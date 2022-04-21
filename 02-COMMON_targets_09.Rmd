@@ -161,5 +161,8 @@ KEGGresults <- enrichKEGG(
 ```
 
 ```{r}
-KEGGresults@result %>% filter(p.adjust < 0.1)
+if(nrow(KEGGresults@result %>% filter(p.adjust < 0.1)) > 0){
+  DT::datatable(KEGGresults@result %>% filter(p.adjust < 0.1), 
+              options = list(scrollX = TRUE))
+} else "no KEGG pathways were found"
 ```
