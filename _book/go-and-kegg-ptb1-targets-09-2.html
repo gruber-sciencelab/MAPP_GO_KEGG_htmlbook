@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 GO and KEGG: PTB1 targets 09 | GO and KEGG analysis for MAPP paper</title>
+  <meta name="description" content="Chapter 7 GO and KEGG: PTB1 targets 09 | GO and KEGG analysis for MAPP paper" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 GO and KEGG: PTB1 targets 09 | GO and KEGG analysis for MAPP paper" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Chapter 7 GO and KEGG: PTB1 targets 09 | GO and KEGG analysis for MAPP paper" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 GO and KEGG: PTB1 targets 09 | GO and KEGG analysis for MAPP paper" />
+  
+  <meta name="twitter:description" content="Chapter 7 GO and KEGG: PTB1 targets 09 | GO and KEGG analysis for MAPP paper" />
+  
+
+<meta name="author" content="Ian U. Kouzel" />
+
+
+<meta name="date" content="2022-04-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="go-and-kegg-ptb1-targets-09-1.html"/>
+
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.20/datatables.js"></script>
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#libraries"><i class="fa fa-check"></i><b>1.1</b> Libraries</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#options"><i class="fa fa-check"></i><b>1.2</b> Options</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#universe-set-of-genes"><i class="fa fa-check"></i><b>1.3</b> Universe set of genes</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#go-ensembl"><i class="fa fa-check"></i><b>1.3.1</b> GO (ENSEMBL)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#kegg-entrez"><i class="fa fa-check"></i><b>1.3.2</b> KEGG (ENTREZ)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#render-the-book"><i class="fa fa-check"></i><b>1.4</b> Render the book</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#session-info"><i class="fa fa-check"></i><b>1.5</b> Session info</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html"><i class="fa fa-check"></i><b>2</b> GO and KEGG: common targets 05</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#load-the-data"><i class="fa fa-check"></i><b>2.1</b> Load the data</a></li>
+<li class="chapter" data-level="2.2" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#gene-ontology-go"><i class="fa fa-check"></i><b>2.2</b> Gene ontology (GO)</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#prepare-the-gene-list"><i class="fa fa-check"></i><b>2.2.1</b> Prepare the gene list</a></li>
+<li class="chapter" data-level="2.2.2" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#biological-process-bp"><i class="fa fa-check"></i><b>2.2.2</b> Biological process (BP)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#molecular-function-mf"><i class="fa fa-check"></i><b>2.2.3</b> Molecular function (MF)</a></li>
+<li class="chapter" data-level="2.2.4" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#cellular-component-cc"><i class="fa fa-check"></i><b>2.2.4</b> Cellular component (CC)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#kegg"><i class="fa fa-check"></i><b>2.3</b> KEGG</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#prepare-the-the-data"><i class="fa fa-check"></i><b>2.3.1</b> Prepare the the data</a></li>
+<li class="chapter" data-level="2.3.2" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#run-kegg"><i class="fa fa-check"></i><b>2.3.2</b> run KEGG</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html"><i class="fa fa-check"></i><b>3</b> GO and KEGG: common targets 09</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#load-the-data-1"><i class="fa fa-check"></i><b>3.1</b> Load the data</a></li>
+<li class="chapter" data-level="3.2" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#gene-ontology-go-1"><i class="fa fa-check"></i><b>3.2</b> Gene ontology (GO)</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#prepare-the-gene-list-1"><i class="fa fa-check"></i><b>3.2.1</b> Prepare the gene list</a></li>
+<li class="chapter" data-level="3.2.2" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#biological-process-bp-1"><i class="fa fa-check"></i><b>3.2.2</b> Biological process (BP)</a></li>
+<li class="chapter" data-level="3.2.3" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#molecular-function-mf-1"><i class="fa fa-check"></i><b>3.2.3</b> Molecular function (MF)</a></li>
+<li class="chapter" data-level="3.2.4" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#cellular-component-cc-1"><i class="fa fa-check"></i><b>3.2.4</b> Cellular component (CC)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#kegg-1"><i class="fa fa-check"></i><b>3.3</b> KEGG</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#prepare-the-the-data-1"><i class="fa fa-check"></i><b>3.3.1</b> Prepare the the data</a></li>
+<li class="chapter" data-level="3.3.2" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#run-kegg-1"><i class="fa fa-check"></i><b>3.3.2</b> run KEGG</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="go-and-kegg-ptb1-targets-05.html"><a href="go-and-kegg-ptb1-targets-05.html"><i class="fa fa-check"></i><b>4</b> GO and KEGG: PTB1 targets 05</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="go-and-kegg-ptb1-targets-05.html"><a href="go-and-kegg-ptb1-targets-05.html#load-the-data-2"><i class="fa fa-check"></i><b>4.1</b> Load the data</a></li>
+<li class="chapter" data-level="4.2" data-path="go-and-kegg-ptb1-targets-05.html"><a href="go-and-kegg-ptb1-targets-05.html#gene-ontology-go-2"><i class="fa fa-check"></i><b>4.2</b> Gene ontology (GO)</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="go-and-kegg-ptb1-targets-05.html"><a href="go-and-kegg-ptb1-targets-05.html#prepare-the-gene-list-2"><i class="fa fa-check"></i><b>4.2.1</b> Prepare the gene list</a></li>
+<li class="chapter" data-level="4.2.2" data-path="go-and-kegg-ptb1-targets-05.html"><a href="go-and-kegg-ptb1-targets-05.html#biological-process-bp-2"><i class="fa fa-check"></i><b>4.2.2</b> Biological process (BP)</a></li>
+<li class="chapter" data-level="4.2.3" data-path="go-and-kegg-ptb1-targets-05.html"><a href="go-and-kegg-ptb1-targets-05.html#molecular-function-mf-2"><i class="fa fa-check"></i><b>4.2.3</b> Molecular function (MF)</a></li>
+<li class="chapter" data-level="4.2.4" data-path="go-and-kegg-ptb1-targets-05.html"><a href="go-and-kegg-ptb1-targets-05.html#cellular-component-cc-2"><i class="fa fa-check"></i><b>4.2.4</b> Cellular component (CC)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="go-and-kegg-ptb1-targets-05.html"><a href="go-and-kegg-ptb1-targets-05.html#kegg-2"><i class="fa fa-check"></i><b>4.3</b> KEGG</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="go-and-kegg-ptb1-targets-05.html"><a href="go-and-kegg-ptb1-targets-05.html#prepare-the-the-data-2"><i class="fa fa-check"></i><b>4.3.1</b> Prepare the the data</a></li>
+<li class="chapter" data-level="4.3.2" data-path="go-and-kegg-ptb1-targets-05.html"><a href="go-and-kegg-ptb1-targets-05.html#run-kegg-2"><i class="fa fa-check"></i><b>4.3.2</b> run KEGG</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="go-and-kegg-ptb1-targets-09.html"><a href="go-and-kegg-ptb1-targets-09.html"><i class="fa fa-check"></i><b>5</b> GO and KEGG: PTB1 targets 09</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="go-and-kegg-ptb1-targets-09.html"><a href="go-and-kegg-ptb1-targets-09.html#load-the-data-3"><i class="fa fa-check"></i><b>5.1</b> Load the data</a></li>
+<li class="chapter" data-level="5.2" data-path="go-and-kegg-ptb1-targets-09.html"><a href="go-and-kegg-ptb1-targets-09.html#gene-ontology-go-3"><i class="fa fa-check"></i><b>5.2</b> Gene ontology (GO)</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="go-and-kegg-ptb1-targets-09.html"><a href="go-and-kegg-ptb1-targets-09.html#prepare-the-gene-list-3"><i class="fa fa-check"></i><b>5.2.1</b> Prepare the gene list</a></li>
+<li class="chapter" data-level="5.2.2" data-path="go-and-kegg-ptb1-targets-09.html"><a href="go-and-kegg-ptb1-targets-09.html#biological-process-bp-3"><i class="fa fa-check"></i><b>5.2.2</b> Biological process (BP)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="go-and-kegg-ptb1-targets-09.html"><a href="go-and-kegg-ptb1-targets-09.html#molecular-function-mf-3"><i class="fa fa-check"></i><b>5.2.3</b> Molecular function (MF)</a></li>
+<li class="chapter" data-level="5.2.4" data-path="go-and-kegg-ptb1-targets-09.html"><a href="go-and-kegg-ptb1-targets-09.html#cellular-component-cc-3"><i class="fa fa-check"></i><b>5.2.4</b> Cellular component (CC)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="go-and-kegg-ptb1-targets-09.html"><a href="go-and-kegg-ptb1-targets-09.html#kegg-3"><i class="fa fa-check"></i><b>5.3</b> KEGG</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="go-and-kegg-ptb1-targets-09.html"><a href="go-and-kegg-ptb1-targets-09.html#prepare-the-the-data-3"><i class="fa fa-check"></i><b>5.3.1</b> Prepare the the data</a></li>
+<li class="chapter" data-level="5.3.2" data-path="go-and-kegg-ptb1-targets-09.html"><a href="go-and-kegg-ptb1-targets-09.html#run-kegg-3"><i class="fa fa-check"></i><b>5.3.2</b> run KEGG</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="go-and-kegg-ptb1-targets-09-1.html"><a href="go-and-kegg-ptb1-targets-09-1.html"><i class="fa fa-check"></i><b>6</b> GO and KEGG: PTB1 targets 09</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="go-and-kegg-ptb1-targets-09-1.html"><a href="go-and-kegg-ptb1-targets-09-1.html#load-the-data-4"><i class="fa fa-check"></i><b>6.1</b> Load the data</a></li>
+<li class="chapter" data-level="6.2" data-path="go-and-kegg-ptb1-targets-09-1.html"><a href="go-and-kegg-ptb1-targets-09-1.html#gene-ontology-go-4"><i class="fa fa-check"></i><b>6.2</b> Gene ontology (GO)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="go-and-kegg-ptb1-targets-09-1.html"><a href="go-and-kegg-ptb1-targets-09-1.html#prepare-the-gene-list-4"><i class="fa fa-check"></i><b>6.2.1</b> Prepare the gene list</a></li>
+<li class="chapter" data-level="6.2.2" data-path="go-and-kegg-ptb1-targets-09-1.html"><a href="go-and-kegg-ptb1-targets-09-1.html#biological-process-bp-4"><i class="fa fa-check"></i><b>6.2.2</b> Biological process (BP)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="go-and-kegg-ptb1-targets-09-1.html"><a href="go-and-kegg-ptb1-targets-09-1.html#molecular-function-mf-4"><i class="fa fa-check"></i><b>6.2.3</b> Molecular function (MF)</a></li>
+<li class="chapter" data-level="6.2.4" data-path="go-and-kegg-ptb1-targets-09-1.html"><a href="go-and-kegg-ptb1-targets-09-1.html#cellular-component-cc-4"><i class="fa fa-check"></i><b>6.2.4</b> Cellular component (CC)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="go-and-kegg-ptb1-targets-09-1.html"><a href="go-and-kegg-ptb1-targets-09-1.html#kegg-4"><i class="fa fa-check"></i><b>6.3</b> KEGG</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="go-and-kegg-ptb1-targets-09-1.html"><a href="go-and-kegg-ptb1-targets-09-1.html#prepare-the-the-data-4"><i class="fa fa-check"></i><b>6.3.1</b> Prepare the the data</a></li>
+<li class="chapter" data-level="6.3.2" data-path="go-and-kegg-ptb1-targets-09-1.html"><a href="go-and-kegg-ptb1-targets-09-1.html#run-kegg-4"><i class="fa fa-check"></i><b>6.3.2</b> run KEGG</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="go-and-kegg-ptb1-targets-09-2.html"><a href="go-and-kegg-ptb1-targets-09-2.html"><i class="fa fa-check"></i><b>7</b> GO and KEGG: PTB1 targets 09</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="go-and-kegg-ptb1-targets-09-2.html"><a href="go-and-kegg-ptb1-targets-09-2.html#load-the-data-5"><i class="fa fa-check"></i><b>7.1</b> Load the data</a></li>
+<li class="chapter" data-level="7.2" data-path="go-and-kegg-ptb1-targets-09-2.html"><a href="go-and-kegg-ptb1-targets-09-2.html#gene-ontology-go-5"><i class="fa fa-check"></i><b>7.2</b> Gene ontology (GO)</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="go-and-kegg-ptb1-targets-09-2.html"><a href="go-and-kegg-ptb1-targets-09-2.html#prepare-the-gene-list-5"><i class="fa fa-check"></i><b>7.2.1</b> Prepare the gene list</a></li>
+<li class="chapter" data-level="7.2.2" data-path="go-and-kegg-ptb1-targets-09-2.html"><a href="go-and-kegg-ptb1-targets-09-2.html#biological-process-bp-5"><i class="fa fa-check"></i><b>7.2.2</b> Biological process (BP)</a></li>
+<li class="chapter" data-level="7.2.3" data-path="go-and-kegg-ptb1-targets-09-2.html"><a href="go-and-kegg-ptb1-targets-09-2.html#molecular-function-mf-5"><i class="fa fa-check"></i><b>7.2.3</b> Molecular function (MF)</a></li>
+<li class="chapter" data-level="7.2.4" data-path="go-and-kegg-ptb1-targets-09-2.html"><a href="go-and-kegg-ptb1-targets-09-2.html#cellular-component-cc-5"><i class="fa fa-check"></i><b>7.2.4</b> Cellular component (CC)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="go-and-kegg-ptb1-targets-09-2.html"><a href="go-and-kegg-ptb1-targets-09-2.html#kegg-5"><i class="fa fa-check"></i><b>7.3</b> KEGG</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="go-and-kegg-ptb1-targets-09-2.html"><a href="go-and-kegg-ptb1-targets-09-2.html#prepare-the-the-data-5"><i class="fa fa-check"></i><b>7.3.1</b> Prepare the the data</a></li>
+<li class="chapter" data-level="7.3.2" data-path="go-and-kegg-ptb1-targets-09-2.html"><a href="go-and-kegg-ptb1-targets-09-2.html#run-kegg-5"><i class="fa fa-check"></i><b>7.3.2</b> run KEGG</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GO and KEGG analysis for MAPP paper</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="go-and-kegg-ptb1-targets-09-2" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> GO and KEGG: PTB1 targets 09</h1>
+<div id="load-the-data-5" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Load the data</h2>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb139-1" aria-hidden="true" tabindex="-1"></a>data_MAPP <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;../data/inclusion_fractions_FG_RBFOX1_targets_09.tsv&quot;</span>, </span>
+<span id="cb139-2"><a href="go-and-kegg-ptb1-targets-09-2.html#cb139-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">header =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_MAPP)</span></code></pre></div>
+</div>
+<div id="gene-ontology-go-5" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Gene ontology (GO)</h2>
+<div id="prepare-the-gene-list-5" class="section level3" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Prepare the gene list</h3>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb141-1" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> data_MAPP <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ABSDIFF)) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(gene_id) <span class="sc">%&gt;%</span></span>
+<span id="cb141-2"><a href="go-and-kegg-ptb1-targets-09-2.html#cb141-2" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">unlist</span>() </span>
+<span id="cb141-3"><a href="go-and-kegg-ptb1-targets-09-2.html#cb141-3" aria-hidden="true" tabindex="-1"></a>genes <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(genes, <span class="st">&quot;,&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(genes)</span></code></pre></div>
+<pre><code>##          gene_id1          gene_id2          gene_id3          gene_id4          gene_id5 
+## &quot;ENSG00000157445&quot; &quot;ENSG00000007047&quot; &quot;ENSG00000081923&quot; &quot;ENSG00000124313&quot; &quot;ENSG00000197959&quot; 
+##          gene_id6 
+## &quot;ENSG00000117114&quot;</code></pre>
+</div>
+<div id="biological-process-bp-5" class="section level3" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Biological process (BP)</h3>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb144-1" aria-hidden="true" tabindex="-1"></a>type_of_GO <span class="ot">=</span> <span class="st">&quot;BP&quot;</span></span>
+<span id="cb144-2"><a href="go-and-kegg-ptb1-targets-09-2.html#cb144-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-3"><a href="go-and-kegg-ptb1-targets-09-2.html#cb144-3" aria-hidden="true" tabindex="-1"></a><span class="fu">assign</span>(<span class="fu">paste0</span>(<span class="st">&quot;GO_&quot;</span>, type_of_GO), <span class="fu">enrichGO</span>(</span>
+<span id="cb144-4"><a href="go-and-kegg-ptb1-targets-09-2.html#cb144-4" aria-hidden="true" tabindex="-1"></a>  genes,</span>
+<span id="cb144-5"><a href="go-and-kegg-ptb1-targets-09-2.html#cb144-5" aria-hidden="true" tabindex="-1"></a>  organismDB,</span>
+<span id="cb144-6"><a href="go-and-kegg-ptb1-targets-09-2.html#cb144-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">keyType =</span> <span class="st">&quot;ENSEMBL&quot;</span>,</span>
+<span id="cb144-7"><a href="go-and-kegg-ptb1-targets-09-2.html#cb144-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">ont =</span> type_of_GO,</span>
+<span id="cb144-8"><a href="go-and-kegg-ptb1-targets-09-2.html#cb144-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">pvalueCutoff =</span> pvalueCutoff,</span>
+<span id="cb144-9"><a href="go-and-kegg-ptb1-targets-09-2.html#cb144-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">minGSSize =</span> minGSSize,</span>
+<span id="cb144-10"><a href="go-and-kegg-ptb1-targets-09-2.html#cb144-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">pAdjustMethod =</span> <span class="st">&quot;BH&quot;</span>,</span>
+<span id="cb144-11"><a href="go-and-kegg-ptb1-targets-09-2.html#cb144-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">universe =</span> universe,</span>
+<span id="cb144-12"><a href="go-and-kegg-ptb1-targets-09-2.html#cb144-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">readable =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb144-13"><a href="go-and-kegg-ptb1-targets-09-2.html#cb144-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-14"><a href="go-and-kegg-ptb1-targets-09-2.html#cb144-14" aria-hidden="true" tabindex="-1"></a>df_GO <span class="ot">&lt;-</span> <span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> <span class="fu">paste0</span>(<span class="st">&quot;GO_&quot;</span>, type_of_GO)))</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">nrow</span>(df_GO) <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
+<span id="cb145-2"><a href="go-and-kegg-ptb1-targets-09-2.html#cb145-2" aria-hidden="true" tabindex="-1"></a>  DT<span class="sc">::</span><span class="fu">datatable</span>(df_GO<span class="sc">@</span>result <span class="sc">%&gt;%</span> <span class="fu">filter</span>(p.adjust <span class="sc">&lt;</span> <span class="fl">0.1</span>), <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb145-3"><a href="go-and-kegg-ptb1-targets-09-2.html#cb145-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="st">&quot;no GOs were found&quot;</span></span></code></pre></div>
+<div id="htmlwidget-93e698d9f57db93fc3f7" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-93e698d9f57db93fc3f7">{"x":{"filter":"none","vertical":false,"data":[["GO:0099504","GO:0099003","GO:0016079","GO:0007269","GO:0099643","GO:0006836","GO:0001505","GO:0046928","GO:2000300","GO:0007268","GO:0098916","GO:0099537","GO:0051588","GO:0023061","GO:0099536","GO:0050804","GO:0099177","GO:0045055","GO:1903423","GO:1903530","GO:0017157","GO:0051046","GO:0034330","GO:0031398","GO:0002686","GO:1903421","GO:0032467","GO:0001953","GO:0032940","GO:1903305","GO:0006887","GO:1903322","GO:0045921","GO:0036465"],["GO:0099504","GO:0099003","GO:0016079","GO:0007269","GO:0099643","GO:0006836","GO:0001505","GO:0046928","GO:2000300","GO:0007268","GO:0098916","GO:0099537","GO:0051588","GO:0023061","GO:0099536","GO:0050804","GO:0099177","GO:0045055","GO:1903423","GO:1903530","GO:0017157","GO:0051046","GO:0034330","GO:0031398","GO:0002686","GO:1903421","GO:0032467","GO:0001953","GO:0032940","GO:1903305","GO:0006887","GO:1903322","GO:0045921","GO:0036465"],["synaptic vesicle cycle","vesicle-mediated transport in synapse","synaptic vesicle exocytosis","neurotransmitter secretion","signal release from synapse","neurotransmitter transport","regulation of neurotransmitter levels","regulation of neurotransmitter secretion","regulation of synaptic vesicle exocytosis","chemical synaptic transmission","anterograde trans-synaptic signaling","trans-synaptic signaling","regulation of neurotransmitter transport","signal release","synaptic signaling","modulation of chemical synaptic transmission","regulation of trans-synaptic signaling","regulated exocytosis","positive regulation of synaptic vesicle recycling","regulation of secretion by cell","regulation of exocytosis","regulation of secretion","cell junction organization","positive regulation of protein ubiquitination","negative regulation of leukocyte migration","regulation of synaptic vesicle recycling","positive regulation of cytokinesis","negative regulation of cell-matrix adhesion","secretion by cell","regulation of regulated secretory pathway","exocytosis","positive regulation of protein modification by small protein conjugation or removal","positive regulation of exocytosis","synaptic vesicle recycling"],["11/90","11/90","8/90","9/90","9/90","9/90","9/90","6/90","5/90","14/90","14/90","14/90","6/90","11/90","14/90","11/90","11/90","8/90","3/90","11/90","7/90","11/90","12/90","5/90","3/90","3/90","3/90","3/90","12/90","5/90","8/90","5/90","4/90","4/90"],["120/9343","131/9343","71/9343","98/9343","98/9343","129/9343","141/9343","55/9343","36/9343","399/9343","399/9343","404/9343","63/9343","257/9343","418/9343","266/9343","266/9343","146/9343","10/9343","310/9343","126/9343","337/9343","423/9343","77/9343","20/9343","20/9343","22/9343","23/9343","456/9343","86/9343","227/9343","91/9343","55/9343","56/9343"],[1.74826683488896e-08,4.38452363814143e-08,3.5058115975372e-07,3.71258067599595e-07,3.71258067599595e-07,3.79026754057674e-06,7.87391750734618e-06,1.34007630912009e-05,2.20895260133389e-05,2.4864340517945e-05,2.4864340517945e-05,2.85493643780741e-05,2.95297336879903e-05,3.35117981433698e-05,4.15513278893867e-05,4.59357539270058e-05,4.59357539270058e-05,7.71582148392571e-05,9.87845234507014e-05,0.000180412683341494,0.000202869948662833,0.000370922458033448,0.000703358377776277,0.000849121302892922,0.000875190207405182,0.000875190207405182,0.00116592554740653,0.0013315170777618,0.00135148463799008,0.00139862533822356,0.00150135659057358,0.0017986791081524,0.00188783658538362,0.00201825758315271],[2.88638854440168e-05,3.61942426328575e-05,0.000122589413921386,0.000122589413921386,0.000122589413921386,0.00104295528491537,0.00185711968637551,0.00276558248294658,0.0037319114722843,0.0037319114722843,0.0037319114722843,0.00375027617837476,0.00375027617837476,0.00395199848105025,0.00446117233726392,0.00446117233726392,0.00446117233726392,0.0070771229277563,0.00858385516932147,0.0148930670098404,0.015949442154397,0.0278360444642374,0.0504888992047232,0.0555745781702291,0.0555745781702291,0.0555745781702291,0.0712941881025251,0.0769414185283318,0.0769414185283318,0.0769710144469031,0.0799593461624834,0.0928006002362377,0.094449036438435,0.0980042138172096],[2.75674075648807e-05,3.4568507420715e-05,0.000117083070581936,0.000117083070581936,0.000117083070581936,0.000996108908032274,0.00177370352270745,0.00264136093560776,0.00356428536802695,0.00356428536802695,0.00356428536802695,0.00358182518741777,0.00358182518741777,0.00377448673825323,0.00426079005465354,0.00426079005465354,0.00426079005465354,0.00675924010697117,0.00819829452239062,0.0142241157708189,0.0152330417592443,0.0265857340734022,0.0482210915290098,0.0530783372750187,0.0530783372750187,0.0530783372750187,0.0680918701760225,0.0734854441999688,0.0734854441999688,0.073513710759961,0.0763678157106699,0.0886322797372463,0.0902066732027005,0.0936021628347604],["DNM3/AP3D1/PPFIA3/DNM1L/CACNB2/CADPS2/CADPS/CSPG5/DNM1/GIPC1/CASK","DNM3/AP3D1/PPFIA3/DNM1L/CACNB2/CADPS2/CADPS/CSPG5/DNM1/GIPC1/CASK","PPFIA3/DNM1L/CACNB2/CADPS2/CADPS/CSPG5/GIPC1/CASK","PPFIA3/DNM1L/CACNB2/CADPS2/CADPS/MCTP1/CSPG5/GIPC1/CASK","PPFIA3/DNM1L/CACNB2/CADPS2/CADPS/MCTP1/CSPG5/GIPC1/CASK","PPFIA3/DNM1L/CACNB2/CADPS2/CADPS/MCTP1/CSPG5/GIPC1/CASK","PPFIA3/DNM1L/CACNB2/CADPS2/CADPS/MCTP1/CSPG5/GIPC1/CASK","DNM1L/CACNB2/MCTP1/CSPG5/GIPC1/CASK","DNM1L/CACNB2/CSPG5/GIPC1/CASK","IQSEC2/PPFIA3/DNM1L/CACNB2/CADPS2/CADPS/MCTP1/RASGRF1/CSPG5/DNM1/GIPC1/SYBU/FCHSD2/CASK","IQSEC2/PPFIA3/DNM1L/CACNB2/CADPS2/CADPS/MCTP1/RASGRF1/CSPG5/DNM1/GIPC1/SYBU/FCHSD2/CASK","IQSEC2/PPFIA3/DNM1L/CACNB2/CADPS2/CADPS/MCTP1/RASGRF1/CSPG5/DNM1/GIPC1/SYBU/FCHSD2/CASK","DNM1L/CACNB2/MCTP1/CSPG5/GIPC1/CASK","PPFIA3/DPP4/DNM1L/CACNB2/CADPS2/CADPS/MCTP1/CSPG5/GIPC1/SYBU/CASK","IQSEC2/PPFIA3/DNM1L/CACNB2/CADPS2/CADPS/MCTP1/RASGRF1/CSPG5/DNM1/GIPC1/SYBU/FCHSD2/CASK","IQSEC2/PPFIA3/DNM1L/CACNB2/MCTP1/RASGRF1/CSPG5/DNM1/GIPC1/SYBU/CASK","IQSEC2/PPFIA3/DNM1L/CACNB2/MCTP1/RASGRF1/CSPG5/DNM1/GIPC1/SYBU/CASK","PPFIA3/DNM1L/CACNB2/CADPS2/CADPS/CSPG5/GIPC1/CASK","DNM3/DNM1L/DNM1","DPP4/DNM1L/CACNB2/CADPS2/CD200/CADPS/MCTP1/CSPG5/GIPC1/SYBU/CASK","DNM1L/CACNB2/CADPS2/CADPS/CSPG5/GIPC1/CASK","DPP4/DNM1L/CACNB2/CADPS2/CD200/CADPS/MCTP1/CSPG5/GIPC1/SYBU/CASK","DNM3/ADGRL2/PPFIA3/NF2/DNM1L/CACNB2/BCAS3/UBE3A/PTPRK/APBB2/PKP4/SYBU","MALT1/UBE3A/MTA1/CDC14B/CHFR","DPP4/CD200/LRCH1","DNM3/DNM1L/DNM1","PKP4/CDC14B/GIPC1","NF2/BCAS3/CASK","PPFIA3/DPP4/DNM1L/CACNB2/CADPS2/CD200/CADPS/MCTP1/CSPG5/GIPC1/SYBU/CASK","DNM1L/CACNB2/CSPG5/GIPC1/CASK","PPFIA3/DNM1L/CACNB2/CADPS2/CADPS/CSPG5/GIPC1/CASK","MALT1/UBE3A/MTA1/CDC14B/CHFR","DNM1L/CACNB2/CADPS2/CADPS","DNM3/AP3D1/DNM1L/DNM1"],[11,11,8,9,9,9,9,6,5,14,14,14,6,11,14,11,11,8,3,11,7,11,12,5,3,3,3,3,12,5,8,5,4,4]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>ID<\/th>\n      <th>Description<\/th>\n      <th>GeneRatio<\/th>\n      <th>BgRatio<\/th>\n      <th>pvalue<\/th>\n      <th>p.adjust<\/th>\n      <th>qvalue<\/th>\n      <th>geneID<\/th>\n      <th>Count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[5,6,7,9]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">nrow</span>(df_GO) <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
+<span id="cb146-2"><a href="go-and-kegg-ptb1-targets-09-2.html#cb146-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">barplot</span>(df_GO, <span class="at">showCategory =</span> showCategory, </span>
+<span id="cb146-3"><a href="go-and-kegg-ptb1-targets-09-2.html#cb146-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">title =</span> type_of_GO)</span>
+<span id="cb146-4"><a href="go-and-kegg-ptb1-targets-09-2.html#cb146-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="st">&quot;no GOs to plot&quot;</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+</div>
+<div id="molecular-function-mf-5" class="section level3" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> Molecular function (MF)</h3>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb147-1" aria-hidden="true" tabindex="-1"></a>type_of_GO <span class="ot">=</span> <span class="st">&quot;MF&quot;</span></span>
+<span id="cb147-2"><a href="go-and-kegg-ptb1-targets-09-2.html#cb147-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-3"><a href="go-and-kegg-ptb1-targets-09-2.html#cb147-3" aria-hidden="true" tabindex="-1"></a><span class="fu">assign</span>(<span class="fu">paste0</span>(<span class="st">&quot;GO_&quot;</span>, type_of_GO), <span class="fu">enrichGO</span>(</span>
+<span id="cb147-4"><a href="go-and-kegg-ptb1-targets-09-2.html#cb147-4" aria-hidden="true" tabindex="-1"></a>  genes,</span>
+<span id="cb147-5"><a href="go-and-kegg-ptb1-targets-09-2.html#cb147-5" aria-hidden="true" tabindex="-1"></a>  organismDB,</span>
+<span id="cb147-6"><a href="go-and-kegg-ptb1-targets-09-2.html#cb147-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">keyType =</span> <span class="st">&quot;ENSEMBL&quot;</span>,</span>
+<span id="cb147-7"><a href="go-and-kegg-ptb1-targets-09-2.html#cb147-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">ont =</span> type_of_GO,</span>
+<span id="cb147-8"><a href="go-and-kegg-ptb1-targets-09-2.html#cb147-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">pvalueCutoff =</span> pvalueCutoff,</span>
+<span id="cb147-9"><a href="go-and-kegg-ptb1-targets-09-2.html#cb147-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">minGSSize =</span> minGSSize,</span>
+<span id="cb147-10"><a href="go-and-kegg-ptb1-targets-09-2.html#cb147-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">pAdjustMethod =</span> <span class="st">&quot;BH&quot;</span>,</span>
+<span id="cb147-11"><a href="go-and-kegg-ptb1-targets-09-2.html#cb147-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">universe =</span> universe,</span>
+<span id="cb147-12"><a href="go-and-kegg-ptb1-targets-09-2.html#cb147-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">readable =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb147-13"><a href="go-and-kegg-ptb1-targets-09-2.html#cb147-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-14"><a href="go-and-kegg-ptb1-targets-09-2.html#cb147-14" aria-hidden="true" tabindex="-1"></a>df_GO <span class="ot">&lt;-</span> <span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> <span class="fu">paste0</span>(<span class="st">&quot;GO_&quot;</span>, type_of_GO)))</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">nrow</span>(df_GO) <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
+<span id="cb148-2"><a href="go-and-kegg-ptb1-targets-09-2.html#cb148-2" aria-hidden="true" tabindex="-1"></a>  DT<span class="sc">::</span><span class="fu">datatable</span>(df_GO<span class="sc">@</span>result <span class="sc">%&gt;%</span> <span class="fu">filter</span>(p.adjust <span class="sc">&lt;</span> <span class="fl">0.1</span>), <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb148-3"><a href="go-and-kegg-ptb1-targets-09-2.html#cb148-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="st">&quot;no GOs were found&quot;</span></span></code></pre></div>
+<div id="htmlwidget-ce268ca63f514e9601b6" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ce268ca63f514e9601b6">{"x":{"filter":"none","vertical":false,"data":[["GO:0015631","GO:0008017","GO:0031491","GO:0008289"],["GO:0015631","GO:0008017","GO:0031491","GO:0008289"],["tubulin binding","microtubule binding","nucleosome binding","lipid binding"],["10/87","8/87","4/87","12/87"],["263/9590","190/9590","46/9590","495/9590"],[0.000126408349636401,0.00031444925987756,0.000771184001877252,0.00161746352399557],[0.0303380039127363,0.0377339111853072,0.0616947201501802,0.0970478114397343],[0.0287412668646976,0.0357479158597647,0.0584476296159602,0.0919400318902747],["MARK4/DNM3/DNM1L/KIF21A/CCDC88B/BCAS3/EFHC1/NUMA1/DNM1/SYBU","MARK4/DNM3/DNM1L/KIF21A/CCDC88B/NUMA1/DNM1/SYBU","MLLT10/NAP1L4/SSRP1/SMARCA4","ATP8B1/DNM1L/CADPS2/MYO1B/CADPS/BCAS3/OSBPL9/STARD4/RPS6KC1/MPPE1/NUMA1/FCHSD2"],[10,8,4,12]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>ID<\/th>\n      <th>Description<\/th>\n      <th>GeneRatio<\/th>\n      <th>BgRatio<\/th>\n      <th>pvalue<\/th>\n      <th>p.adjust<\/th>\n      <th>qvalue<\/th>\n      <th>geneID<\/th>\n      <th>Count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[5,6,7,9]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">nrow</span>(df_GO) <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
+<span id="cb149-2"><a href="go-and-kegg-ptb1-targets-09-2.html#cb149-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">barplot</span>(df_GO, <span class="at">showCategory =</span> showCategory, </span>
+<span id="cb149-3"><a href="go-and-kegg-ptb1-targets-09-2.html#cb149-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">title =</span> type_of_GO)</span>
+<span id="cb149-4"><a href="go-and-kegg-ptb1-targets-09-2.html#cb149-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="st">&quot;no GOs to plot&quot;</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+</div>
+<div id="cellular-component-cc-5" class="section level3" number="7.2.4">
+<h3><span class="header-section-number">7.2.4</span> Cellular component (CC)</h3>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb150-1" aria-hidden="true" tabindex="-1"></a>type_of_GO <span class="ot">=</span> <span class="st">&quot;CC&quot;</span></span>
+<span id="cb150-2"><a href="go-and-kegg-ptb1-targets-09-2.html#cb150-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb150-3"><a href="go-and-kegg-ptb1-targets-09-2.html#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="fu">assign</span>(<span class="fu">paste0</span>(<span class="st">&quot;GO_&quot;</span>, type_of_GO), <span class="fu">enrichGO</span>(</span>
+<span id="cb150-4"><a href="go-and-kegg-ptb1-targets-09-2.html#cb150-4" aria-hidden="true" tabindex="-1"></a>  genes,</span>
+<span id="cb150-5"><a href="go-and-kegg-ptb1-targets-09-2.html#cb150-5" aria-hidden="true" tabindex="-1"></a>  organismDB,</span>
+<span id="cb150-6"><a href="go-and-kegg-ptb1-targets-09-2.html#cb150-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">keyType =</span> <span class="st">&quot;ENSEMBL&quot;</span>,</span>
+<span id="cb150-7"><a href="go-and-kegg-ptb1-targets-09-2.html#cb150-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">ont =</span> type_of_GO,</span>
+<span id="cb150-8"><a href="go-and-kegg-ptb1-targets-09-2.html#cb150-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">pvalueCutoff =</span> pvalueCutoff,</span>
+<span id="cb150-9"><a href="go-and-kegg-ptb1-targets-09-2.html#cb150-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">minGSSize =</span> minGSSize,</span>
+<span id="cb150-10"><a href="go-and-kegg-ptb1-targets-09-2.html#cb150-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">pAdjustMethod =</span> <span class="st">&quot;BH&quot;</span>,</span>
+<span id="cb150-11"><a href="go-and-kegg-ptb1-targets-09-2.html#cb150-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">universe =</span> universe,</span>
+<span id="cb150-12"><a href="go-and-kegg-ptb1-targets-09-2.html#cb150-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">readable =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb150-13"><a href="go-and-kegg-ptb1-targets-09-2.html#cb150-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb150-14"><a href="go-and-kegg-ptb1-targets-09-2.html#cb150-14" aria-hidden="true" tabindex="-1"></a>df_GO <span class="ot">&lt;-</span> <span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> <span class="fu">paste0</span>(<span class="st">&quot;GO_&quot;</span>, type_of_GO)))</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">nrow</span>(df_GO) <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
+<span id="cb151-2"><a href="go-and-kegg-ptb1-targets-09-2.html#cb151-2" aria-hidden="true" tabindex="-1"></a>  DT<span class="sc">::</span><span class="fu">datatable</span>(df_GO<span class="sc">@</span>result <span class="sc">%&gt;%</span> <span class="fu">filter</span>(p.adjust <span class="sc">&lt;</span> <span class="fl">0.1</span>), <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb151-3"><a href="go-and-kegg-ptb1-targets-09-2.html#cb151-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="st">&quot;no GOs were found&quot;</span></span></code></pre></div>
+<div id="htmlwidget-cc42fa3167113000dd6c" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cc42fa3167113000dd6c">{"x":{"filter":"none","vertical":false,"data":[["GO:0098793","GO:0098978","GO:0099513","GO:0005891","GO:0005874","GO:0098862","GO:0005903"],["GO:0098793","GO:0098978","GO:0099513","GO:0005891","GO:0005874","GO:0098862","GO:0005903"],["presynapse","glutamatergic synapse","polymeric cytoskeletal fiber","voltage-gated calcium channel complex","microtubule","cluster of actin-based cell projections","brush border"],["12/91","9/91","11/91","3/91","9/91","5/91","4/91"],["320/9707","225/9707","411/9707","25/9707","296/9707","94/9707","60/9707"],[4.08464358570002e-05,0.000247817258827683,0.00153480579309844,0.00157883568697758,0.00176859545547821,0.00184650336295451,0.00236151804646994],[0.0103749947076781,0.0314727918711158,0.0781686423650742,0.0781686423650742,0.0781686423650742,0.0781686423650742,0.0856893691147664],[0.00958816336432742,0.0290859203781965,0.072240394726115,0.072240394726115,0.072240394726115,0.072240394726115,0.0791907555432777],["DNM3/AP3D1/PPFIA3/DNM1L/CACNB2/CADPS2/CADPS/MFF/MCTP1/DNM1/GIPC1/CASK","DNM3/ADGRL2/AP3D1/PPFIA3/CADPS2/CADPS/CSPG5/DNM1/GIPC1","DNM3/EHBP1/DNM1L/MYO1B/KIF21A/BCAS3/DYNC1I2/MTA1/NUMA1/DNM1/SYBU","CACNA2D3/CATSPERG/CACNB2","DNM3/DNM1L/KIF21A/BCAS3/DYNC1I2/MTA1/NUMA1/DNM1/SYBU","ATP8B1/DNM1L/MYO1B/GIPC1/FCHSD2","ATP8B1/DNM1L/MYO1B/GIPC1"],[12,9,11,3,9,5,4]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>ID<\/th>\n      <th>Description<\/th>\n      <th>GeneRatio<\/th>\n      <th>BgRatio<\/th>\n      <th>pvalue<\/th>\n      <th>p.adjust<\/th>\n      <th>qvalue<\/th>\n      <th>geneID<\/th>\n      <th>Count<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"columnDefs":[{"className":"dt-right","targets":[5,6,7,9]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">nrow</span>(df_GO) <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
+<span id="cb152-2"><a href="go-and-kegg-ptb1-targets-09-2.html#cb152-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">barplot</span>(df_GO, <span class="at">showCategory =</span> showCategory, </span>
+<span id="cb152-3"><a href="go-and-kegg-ptb1-targets-09-2.html#cb152-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">title =</span> type_of_GO)</span>
+<span id="cb152-4"><a href="go-and-kegg-ptb1-targets-09-2.html#cb152-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="st">&quot;no GOs to plot&quot;</span></span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+</div>
+</div>
+<div id="kegg-5" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> KEGG</h2>
+<div id="prepare-the-the-data-5" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Prepare the the data</h3>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select gene_id in ENSEMBL format and DIFF from the result table</span></span>
+<span id="cb153-2"><a href="go-and-kegg-ptb1-targets-09-2.html#cb153-2" aria-hidden="true" tabindex="-1"></a>DIFF <span class="ot">&lt;-</span> data_MAPP <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(gene_id, DIFF)</span>
+<span id="cb153-3"><a href="go-and-kegg-ptb1-targets-09-2.html#cb153-3" aria-hidden="true" tabindex="-1"></a><span class="co"># rename the gene_id column </span></span>
+<span id="cb153-4"><a href="go-and-kegg-ptb1-targets-09-2.html#cb153-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(DIFF)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;ENSEMBL&quot;</span></span>
+<span id="cb153-5"><a href="go-and-kegg-ptb1-targets-09-2.html#cb153-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DIFF)</span>
+<span id="cb153-6"><a href="go-and-kegg-ptb1-targets-09-2.html#cb153-6" aria-hidden="true" tabindex="-1"></a><span class="co"># create new df by converting ENSEMBL ID into ENTREZID and adding DIFF column</span></span>
+<span id="cb153-7"><a href="go-and-kegg-ptb1-targets-09-2.html#cb153-7" aria-hidden="true" tabindex="-1"></a><span class="co"># sort table by in descending order by abs(DIFF)</span></span>
+<span id="cb153-8"><a href="go-and-kegg-ptb1-targets-09-2.html#cb153-8" aria-hidden="true" tabindex="-1"></a>genes_ENTREZ_df <span class="ot">&lt;-</span> <span class="fu">bitr</span>(data_MAPP<span class="sc">$</span>gene_id, <span class="at">fromType =</span> <span class="st">&quot;ENSEMBL&quot;</span>, </span>
+<span id="cb153-9"><a href="go-and-kegg-ptb1-targets-09-2.html#cb153-9" aria-hidden="true" tabindex="-1"></a>                        <span class="at">toType =</span> <span class="st">&quot;ENTREZID&quot;</span>, <span class="at">OrgDb=</span> organismDB) <span class="sc">%&gt;%</span> </span>
+<span id="cb153-10"><a href="go-and-kegg-ptb1-targets-09-2.html#cb153-10" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">left_join</span>(DIFF, <span class="at">by =</span> <span class="st">&quot;ENSEMBL&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb153-11"><a href="go-and-kegg-ptb1-targets-09-2.html#cb153-11" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">abs</span>(DIFF)))</span></code></pre></div>
+<pre><code>## &#39;select()&#39; returned 1:1 mapping between keys and columns</code></pre>
+<pre><code>## Warning in bitr(data_MAPP$gene_id, fromType = &quot;ENSEMBL&quot;, toType = &quot;ENTREZID&quot;, : 3.06% of
+## input gene IDs are fail to map...</code></pre>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(genes_ENTREZ_df )</span>
+<span id="cb156-2"><a href="go-and-kegg-ptb1-targets-09-2.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector with DIFF values</span></span>
+<span id="cb156-3"><a href="go-and-kegg-ptb1-targets-09-2.html#cb156-3" aria-hidden="true" tabindex="-1"></a>genes_DIFF <span class="ot">&lt;-</span> genes_ENTREZ_df<span class="sc">$</span>DIFF</span>
+<span id="cb156-4"><a href="go-and-kegg-ptb1-targets-09-2.html#cb156-4" aria-hidden="true" tabindex="-1"></a>genes_DIFF</span></code></pre></div>
+<pre><code>##  [1] -0.8358725 -0.8257557 -0.7708317 -0.7253903 -0.6807944 -0.6673038 -0.6374273 -0.6063017
+##  [9] -0.5928132 -0.5837685 -0.5498302 -0.5156668 -0.5131267 -0.4913183 -0.4904037 -0.4874627
+## [17] -0.4858158 -0.4778612 -0.4712907 -0.4629705 -0.4629685 -0.4308766 -0.4210806 -0.3956039
+## [25] -0.3937732 -0.3937624 -0.3866421 -0.3806583 -0.3748361 -0.3734401 -0.3619472 -0.3590499
+## [33] -0.3346450 -0.3318807 -0.3283974 -0.3017486 -0.2937947 -0.2823431 -0.2775016 -0.2760941
+## [41] -0.2750906 -0.2697988 -0.2569122 -0.2449537 -0.2437877 -0.2399435 -0.2374465 -0.2350401
+## [49] -0.2350125 -0.2348441 -0.2331630 -0.2252108 -0.2226148 -0.2190513 -0.2188537 -0.2160939
+## [57] -0.2137278 -0.2090721 -0.2050971 -0.1995887 -0.1963116 -0.1953891 -0.1946038 -0.1907279
+## [65] -0.1852250 -0.1802956 -0.1762969 -0.1746900 -0.1733775 -0.1733665 -0.1732260 -0.1729623
+## [73] -0.1708320 -0.1580064 -0.1465838 -0.1460860 -0.1443043 -0.1429955 -0.1360011 -0.1316578
+## [81] -0.1308839 -0.1265238 -0.1252140 -0.1230552 -0.1219384 -0.1186675 -0.1180657 -0.1179384
+## [89] -0.1172783 -0.1171512 -0.1164545 -0.1106982 -0.1088295 -0.1088234 -0.1056889 -0.1052476
+## [97] -0.1052013 -0.1020050 -0.1018100</code></pre>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add names based on ENTREZID</span></span>
+<span id="cb158-2"><a href="go-and-kegg-ptb1-targets-09-2.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(genes_DIFF) <span class="ot">&lt;-</span> genes_ENTREZ_df<span class="sc">$</span>ENTREZID</span>
+<span id="cb158-3"><a href="go-and-kegg-ptb1-targets-09-2.html#cb158-3" aria-hidden="true" tabindex="-1"></a>genes_DIFF</span></code></pre></div>
+<pre><code>##      55799      57787       5205      23096      26052      23266       8943       8541 
+## -0.8358725 -0.8257557 -0.7708317 -0.7253903 -0.6807944 -0.6673038 -0.6374273 -0.6063017 
+##       1803      57828       4771      91050       5378      92335      23301       2199 
+## -0.5928132 -0.5837685 -0.5498302 -0.5156668 -0.5131267 -0.4913183 -0.4904037 -0.4874627 
+##        817     157574      10059      57568      10059       8028      22864        783 
+## -0.4858158 -0.4778612 -0.4712907 -0.4629705 -0.4629685 -0.4308766 -0.4210806 -0.3956039 
+##      10892      93664       4676       4345       4430       6334       9208      26260 
+## -0.3937732 -0.3937624 -0.3866421 -0.3806583 -0.3748361 -0.3734401 -0.3619472 -0.3590499 
+##       8618      55605     283234      54828     114327       1781      55605     124565 
+## -0.3346450 -0.3318807 -0.3283974 -0.3017486 -0.2937947 -0.2823431 -0.2775016 -0.2760941 
+##       6185       7337      84326       1305      56947       9112        825       5796 
+## -0.2750906 -0.2697988 -0.2569122 -0.2449537 -0.2437877 -0.2399435 -0.2374465 -0.2350401 
+##      84081     114883       6749      10525      51026     114883      55605     445815 
+## -0.2350125 -0.2348441 -0.2331630 -0.2252108 -0.2226148 -0.2190513 -0.2188537 -0.2160939 
+##      79772       8882      10561       5923        726     220869      10675      83787 
+## -0.2137278 -0.2090721 -0.2050971 -0.1995887 -0.1963116 -0.1953891 -0.1946038 -0.1907279 
+##        323       4212     134429       4152       8502      26750       8853     130733 
+## -0.1852250 -0.1802956 -0.1762969 -0.1746900 -0.1733775 -0.1733665 -0.1732260 -0.1729623 
+##      65258       8073  101927314       4926       1759       8555      10755      55975 
+## -0.1708320 -0.1580064 -0.1465838 -0.1460860 -0.1443043 -0.1429955 -0.1360011 -0.1316578 
+##      57153      10175     283130      22872      79621     146664      23348      23143 
+## -0.1308839 -0.1265238 -0.1252140 -0.1230552 -0.1219384 -0.1186675 -0.1180657 -0.1179384 
+##      55638       6597       9873       9819      23175       4800      26269      22978 
+## -0.1172783 -0.1171512 -0.1164545 -0.1106982 -0.1088295 -0.1088234 -0.1056889 -0.1052476 
+##      55743       8573       8559 
+## -0.1052013 -0.1020050 -0.1018100</code></pre>
+</div>
+<div id="run-kegg-5" class="section level3" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> run KEGG</h3>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="go-and-kegg-ptb1-targets-09-2.html#cb160-1" aria-hidden="true" tabindex="-1"></a>KEGGresults <span class="ot">&lt;-</span> <span class="fu">enrichKEGG</span>(</span>
+<span id="cb160-2"><a href="go-and-kegg-ptb1-targets-09-2.html#cb160-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(genes_DIFF),</span>
+<span id="cb160-3"><a href="go-and-kegg-ptb1-targets-09-2.html#cb160-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">organism =</span> <span class="st">&quot;hsa&quot;</span>,</span>
+<span id="cb160-4"><a href="go-and-kegg-ptb1-targets-09-2.html#cb160-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">keyType =</span> <span class="st">&quot;ncbi-geneid&quot;</span>,</span>
+<span id="cb160-5"><a href="go-and-kegg-ptb1-targets-09-2.html#cb160-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">pvalueCutoff =</span> <span class="fl">0.1</span>,</span>
+<span id="cb160-6"><a href="go-and-kegg-ptb1-targets-09-2.html#cb160-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pAdjustMethod =</span> <span class="st">&quot;BH&quot;</span>,</span>
+<span id="cb160-7"><a href="go-and-kegg-ptb1-targets-09-2.html#cb160-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">universe =</span> <span class="fu">as.character</span>(<span class="fu">na.omit</span>(ENTREZ_universe)),</span>
+<span id="cb160-8"><a href="go-and-kegg-ptb1-targets-09-2.html#cb160-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">use_internal_data =</span> <span class="cn">FALSE</span></span>
+<span id="cb160-9"><a href="go-and-kegg-ptb1-targets-09-2.html#cb160-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb160-10"><a href="go-and-kegg-ptb1-targets-09-2.html#cb160-10" aria-hidden="true" tabindex="-1"></a>KEGGresults</span></code></pre></div>
+<pre><code>## #
+## # over-representation test
+## #
+## #...@organism     hsa 
+## #...@ontology     KEGG 
+## #...@keytype      ncbi-geneid 
+## #...@gene     chr [1:95] &quot;55799&quot; &quot;57787&quot; &quot;5205&quot; &quot;23096&quot; &quot;26052&quot; &quot;23266&quot; &quot;8943&quot; &quot;8541&quot; &quot;1803&quot; &quot;57828&quot; ...
+## #...pvalues adjusted by &#39;BH&#39; with cutoff &lt;0.1 
+## #...0 enriched terms found
+## #...Citation
+##  T Wu, E Hu, S Xu, M Chen, P Guo, Z Dai, T Feng, L Zhou, W Tang, L Zhan, X Fu, S Liu, X Bo, and G Yu.
+##  clusterProfiler 4.0: A universal enrichment tool for interpreting omics data.
+##  The Innovation. 2021, 2(3):100141</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="go-and-kegg-ptb1-targets-09-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-RBFOX1_targets_09.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>GO and KEGG analysis for MAPP paper</title>
+  <meta name="description" content="GO and KEGG analysis for MAPP paper" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="GO and KEGG analysis for MAPP paper" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="GO and KEGG analysis for MAPP paper" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="GO and KEGG analysis for MAPP paper" />
+  
+  <meta name="twitter:description" content="GO and KEGG analysis for MAPP paper" />
+  
+
+<meta name="author" content="Ian U. Kouzel" />
+
+
+<meta name="date" content="2022-04-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="go-and-kegg-common-targets-05.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.20/datatables.js"></script>
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MAPP GO KEGG</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#libraries"><i class="fa fa-check"></i><b>1.1</b> Libraries</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#options"><i class="fa fa-check"></i><b>1.2</b> Options</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#universe-set-of-genes"><i class="fa fa-check"></i><b>1.3</b> Universe set of genes</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#go-ensembl"><i class="fa fa-check"></i><b>1.3.1</b> GO (ENSEMBL)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#kegg-entrez"><i class="fa fa-check"></i><b>1.3.2</b> KEGG (ENTREZ)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#render-the-book"><i class="fa fa-check"></i><b>1.4</b> Render the book</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#session-info"><i class="fa fa-check"></i><b>1.5</b> Session info</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html"><i class="fa fa-check"></i><b>2</b> GO and KEGG: common targets 05</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#load-the-data"><i class="fa fa-check"></i><b>2.1</b> Load the data</a></li>
+<li class="chapter" data-level="2.2" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#gene-ontology-go"><i class="fa fa-check"></i><b>2.2</b> Gene ontology (GO)</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#prepare-the-gene-list"><i class="fa fa-check"></i><b>2.2.1</b> Prepare the gene list</a></li>
+<li class="chapter" data-level="2.2.2" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#biological-process-bp"><i class="fa fa-check"></i><b>2.2.2</b> Biological process (BP)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#molecular-function-mf"><i class="fa fa-check"></i><b>2.2.3</b> Molecular function (MF)</a></li>
+<li class="chapter" data-level="2.2.4" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#cellular-component-cc"><i class="fa fa-check"></i><b>2.2.4</b> Cellular component (CC)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#kegg"><i class="fa fa-check"></i><b>2.3</b> KEGG</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#prepare-the-the-data"><i class="fa fa-check"></i><b>2.3.1</b> Prepare the the data</a></li>
+<li class="chapter" data-level="2.3.2" data-path="go-and-kegg-common-targets-05.html"><a href="go-and-kegg-common-targets-05.html#run-kegg"><i class="fa fa-check"></i><b>2.3.2</b> run KEGG</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html"><i class="fa fa-check"></i><b>3</b> GO and KEGG: common targets 09</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#load-the-data-1"><i class="fa fa-check"></i><b>3.1</b> Load the data</a></li>
+<li class="chapter" data-level="3.2" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#gene-ontology-go-1"><i class="fa fa-check"></i><b>3.2</b> Gene ontology (GO)</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#prepare-the-gene-list-1"><i class="fa fa-check"></i><b>3.2.1</b> Prepare the gene list</a></li>
+<li class="chapter" data-level="3.2.2" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#biological-process-bp-1"><i class="fa fa-check"></i><b>3.2.2</b> Biological process (BP)</a></li>
+<li class="chapter" data-level="3.2.3" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#molecular-function-mf-1"><i class="fa fa-check"></i><b>3.2.3</b> Molecular function (MF)</a></li>
+<li class="chapter" data-level="3.2.4" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#cellular-component-cc-1"><i class="fa fa-check"></i><b>3.2.4</b> Cellular component (CC)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#kegg-1"><i class="fa fa-check"></i><b>3.3</b> KEGG</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#prepare-the-the-data-1"><i class="fa fa-check"></i><b>3.3.1</b> Prepare the the data</a></li>
+<li class="chapter" data-level="3.3.2" data-path="go-and-kegg-common-targets-09.html"><a href="go-and-kegg-common-targets-09.html#run-kegg-1"><i class="fa fa-check"></i><b>3.3.2</b> run KEGG</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="go-and-kegg-ptbp1-targets-05.html"><a href="go-and-kegg-ptbp1-targets-05.html"><i class="fa fa-check"></i><b>4</b> GO and KEGG: PTBP1 targets 05</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="go-and-kegg-ptbp1-targets-05.html"><a href="go-and-kegg-ptbp1-targets-05.html#load-the-data-2"><i class="fa fa-check"></i><b>4.1</b> Load the data</a></li>
+<li class="chapter" data-level="4.2" data-path="go-and-kegg-ptbp1-targets-05.html"><a href="go-and-kegg-ptbp1-targets-05.html#gene-ontology-go-2"><i class="fa fa-check"></i><b>4.2</b> Gene ontology (GO)</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="go-and-kegg-ptbp1-targets-05.html"><a href="go-and-kegg-ptbp1-targets-05.html#prepare-the-gene-list-2"><i class="fa fa-check"></i><b>4.2.1</b> Prepare the gene list</a></li>
+<li class="chapter" data-level="4.2.2" data-path="go-and-kegg-ptbp1-targets-05.html"><a href="go-and-kegg-ptbp1-targets-05.html#biological-process-bp-2"><i class="fa fa-check"></i><b>4.2.2</b> Biological process (BP)</a></li>
+<li class="chapter" data-level="4.2.3" data-path="go-and-kegg-ptbp1-targets-05.html"><a href="go-and-kegg-ptbp1-targets-05.html#molecular-function-mf-2"><i class="fa fa-check"></i><b>4.2.3</b> Molecular function (MF)</a></li>
+<li class="chapter" data-level="4.2.4" data-path="go-and-kegg-ptbp1-targets-05.html"><a href="go-and-kegg-ptbp1-targets-05.html#cellular-component-cc-2"><i class="fa fa-check"></i><b>4.2.4</b> Cellular component (CC)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="go-and-kegg-ptbp1-targets-05.html"><a href="go-and-kegg-ptbp1-targets-05.html#kegg-2"><i class="fa fa-check"></i><b>4.3</b> KEGG</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="go-and-kegg-ptbp1-targets-05.html"><a href="go-and-kegg-ptbp1-targets-05.html#prepare-the-the-data-2"><i class="fa fa-check"></i><b>4.3.1</b> Prepare the the data</a></li>
+<li class="chapter" data-level="4.3.2" data-path="go-and-kegg-ptbp1-targets-05.html"><a href="go-and-kegg-ptbp1-targets-05.html#run-kegg-2"><i class="fa fa-check"></i><b>4.3.2</b> run KEGG</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="go-and-kegg-ptbp1-targets-09.html"><a href="go-and-kegg-ptbp1-targets-09.html"><i class="fa fa-check"></i><b>5</b> GO and KEGG: PTBP1 targets 09</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="go-and-kegg-ptbp1-targets-09.html"><a href="go-and-kegg-ptbp1-targets-09.html#load-the-data-3"><i class="fa fa-check"></i><b>5.1</b> Load the data</a></li>
+<li class="chapter" data-level="5.2" data-path="go-and-kegg-ptbp1-targets-09.html"><a href="go-and-kegg-ptbp1-targets-09.html#gene-ontology-go-3"><i class="fa fa-check"></i><b>5.2</b> Gene ontology (GO)</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="go-and-kegg-ptbp1-targets-09.html"><a href="go-and-kegg-ptbp1-targets-09.html#prepare-the-gene-list-3"><i class="fa fa-check"></i><b>5.2.1</b> Prepare the gene list</a></li>
+<li class="chapter" data-level="5.2.2" data-path="go-and-kegg-ptbp1-targets-09.html"><a href="go-and-kegg-ptbp1-targets-09.html#biological-process-bp-3"><i class="fa fa-check"></i><b>5.2.2</b> Biological process (BP)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="go-and-kegg-ptbp1-targets-09.html"><a href="go-and-kegg-ptbp1-targets-09.html#molecular-function-mf-3"><i class="fa fa-check"></i><b>5.2.3</b> Molecular function (MF)</a></li>
+<li class="chapter" data-level="5.2.4" data-path="go-and-kegg-ptbp1-targets-09.html"><a href="go-and-kegg-ptbp1-targets-09.html#cellular-component-cc-3"><i class="fa fa-check"></i><b>5.2.4</b> Cellular component (CC)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="go-and-kegg-ptbp1-targets-09.html"><a href="go-and-kegg-ptbp1-targets-09.html#kegg-3"><i class="fa fa-check"></i><b>5.3</b> KEGG</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="go-and-kegg-ptbp1-targets-09.html"><a href="go-and-kegg-ptbp1-targets-09.html#prepare-the-the-data-3"><i class="fa fa-check"></i><b>5.3.1</b> Prepare the the data</a></li>
+<li class="chapter" data-level="5.3.2" data-path="go-and-kegg-ptbp1-targets-09.html"><a href="go-and-kegg-ptbp1-targets-09.html#run-kegg-3"><i class="fa fa-check"></i><b>5.3.2</b> run KEGG</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="go-and-kegg-rbfox1-targets-05.html"><a href="go-and-kegg-rbfox1-targets-05.html"><i class="fa fa-check"></i><b>6</b> GO and KEGG: RBFOX1 targets 05</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="go-and-kegg-rbfox1-targets-05.html"><a href="go-and-kegg-rbfox1-targets-05.html#load-the-data-4"><i class="fa fa-check"></i><b>6.1</b> Load the data</a></li>
+<li class="chapter" data-level="6.2" data-path="go-and-kegg-rbfox1-targets-05.html"><a href="go-and-kegg-rbfox1-targets-05.html#gene-ontology-go-4"><i class="fa fa-check"></i><b>6.2</b> Gene ontology (GO)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="go-and-kegg-rbfox1-targets-05.html"><a href="go-and-kegg-rbfox1-targets-05.html#prepare-the-gene-list-4"><i class="fa fa-check"></i><b>6.2.1</b> Prepare the gene list</a></li>
+<li class="chapter" data-level="6.2.2" data-path="go-and-kegg-rbfox1-targets-05.html"><a href="go-and-kegg-rbfox1-targets-05.html#biological-process-bp-4"><i class="fa fa-check"></i><b>6.2.2</b> Biological process (BP)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="go-and-kegg-rbfox1-targets-05.html"><a href="go-and-kegg-rbfox1-targets-05.html#molecular-function-mf-4"><i class="fa fa-check"></i><b>6.2.3</b> Molecular function (MF)</a></li>
+<li class="chapter" data-level="6.2.4" data-path="go-and-kegg-rbfox1-targets-05.html"><a href="go-and-kegg-rbfox1-targets-05.html#cellular-component-cc-4"><i class="fa fa-check"></i><b>6.2.4</b> Cellular component (CC)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="go-and-kegg-rbfox1-targets-05.html"><a href="go-and-kegg-rbfox1-targets-05.html#kegg-4"><i class="fa fa-check"></i><b>6.3</b> KEGG</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="go-and-kegg-rbfox1-targets-05.html"><a href="go-and-kegg-rbfox1-targets-05.html#prepare-the-the-data-4"><i class="fa fa-check"></i><b>6.3.1</b> Prepare the the data</a></li>
+<li class="chapter" data-level="6.3.2" data-path="go-and-kegg-rbfox1-targets-05.html"><a href="go-and-kegg-rbfox1-targets-05.html#run-kegg-4"><i class="fa fa-check"></i><b>6.3.2</b> run KEGG</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="go-and-kegg-rbfox1-targets-09.html"><a href="go-and-kegg-rbfox1-targets-09.html"><i class="fa fa-check"></i><b>7</b> GO and KEGG: RBFOX1 targets 09</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="go-and-kegg-rbfox1-targets-09.html"><a href="go-and-kegg-rbfox1-targets-09.html#load-the-data-5"><i class="fa fa-check"></i><b>7.1</b> Load the data</a></li>
+<li class="chapter" data-level="7.2" data-path="go-and-kegg-rbfox1-targets-09.html"><a href="go-and-kegg-rbfox1-targets-09.html#gene-ontology-go-5"><i class="fa fa-check"></i><b>7.2</b> Gene ontology (GO)</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="go-and-kegg-rbfox1-targets-09.html"><a href="go-and-kegg-rbfox1-targets-09.html#prepare-the-gene-list-5"><i class="fa fa-check"></i><b>7.2.1</b> Prepare the gene list</a></li>
+<li class="chapter" data-level="7.2.2" data-path="go-and-kegg-rbfox1-targets-09.html"><a href="go-and-kegg-rbfox1-targets-09.html#biological-process-bp-5"><i class="fa fa-check"></i><b>7.2.2</b> Biological process (BP)</a></li>
+<li class="chapter" data-level="7.2.3" data-path="go-and-kegg-rbfox1-targets-09.html"><a href="go-and-kegg-rbfox1-targets-09.html#molecular-function-mf-5"><i class="fa fa-check"></i><b>7.2.3</b> Molecular function (MF)</a></li>
+<li class="chapter" data-level="7.2.4" data-path="go-and-kegg-rbfox1-targets-09.html"><a href="go-and-kegg-rbfox1-targets-09.html#cellular-component-cc-5"><i class="fa fa-check"></i><b>7.2.4</b> Cellular component (CC)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="go-and-kegg-rbfox1-targets-09.html"><a href="go-and-kegg-rbfox1-targets-09.html#kegg-5"><i class="fa fa-check"></i><b>7.3</b> KEGG</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="go-and-kegg-rbfox1-targets-09.html"><a href="go-and-kegg-rbfox1-targets-09.html#prepare-the-the-data-5"><i class="fa fa-check"></i><b>7.3.1</b> Prepare the the data</a></li>
+<li class="chapter" data-level="7.3.2" data-path="go-and-kegg-rbfox1-targets-09.html"><a href="go-and-kegg-rbfox1-targets-09.html#run-kegg-5"><i class="fa fa-check"></i><b>7.3.2</b> run KEGG</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GO and KEGG analysis for MAPP paper</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">GO and KEGG analysis for MAPP paper</h1>
+<p class="author"><em>Ian U. Kouzel</em></p>
+<p class="date"><em>2022-04-21</em></p>
+</div>
+<div id="prerequisites" class="section level1" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Prerequisites</h1>
+<div id="libraries" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Libraries</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clusterProfiler)</span>
+<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pathview)</span>
+<span id="cb1-4"><a href="index.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(enrichplot)</span>
+<span id="cb1-5"><a href="index.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(org.Hs.eg.db)</span>
+<span id="cb1-6"><a href="index.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-7"><a href="index.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span></code></pre></div>
+</div>
+<div id="options" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Options</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GO analysis</span></span>
+<span id="cb2-2"><a href="index.html#cb2-2" aria-hidden="true" tabindex="-1"></a>minGSSize <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co"># minimal size of genes annotated by Ontology term for testing</span></span>
+<span id="cb2-3"><a href="index.html#cb2-3" aria-hidden="true" tabindex="-1"></a>organismDB <span class="ot">&lt;-</span> <span class="st">&quot;org.Hs.eg.db&quot;</span> <span class="co"># human DB</span></span>
+<span id="cb2-4"><a href="index.html#cb2-4" aria-hidden="true" tabindex="-1"></a>pvalueCutoff <span class="ot">=</span> <span class="fl">0.1</span> <span class="co"># p-value cutoff</span></span>
+<span id="cb2-5"><a href="index.html#cb2-5" aria-hidden="true" tabindex="-1"></a>showCategory <span class="ot">=</span> <span class="dv">10</span> <span class="co"># number of GOs to plot</span></span></code></pre></div>
+</div>
+<div id="universe-set-of-genes" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Universe set of genes</h2>
+<div id="go-ensembl" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> GO (ENSEMBL)</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a>universe <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/inclusion_fractions_ALL_updated.tsv&quot;</span>, </span>
+<span id="cb3-2"><a href="index.html#cb3-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">header =</span> T) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(gene_id) <span class="sc">%&gt;%</span> <span class="fu">unlist</span>() </span>
+<span id="cb3-3"><a href="index.html#cb3-3" aria-hidden="true" tabindex="-1"></a>universe <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(universe, <span class="st">&quot;,&quot;</span>)))</span>
+<span id="cb3-4"><a href="index.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(universe, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;ENSG00000174371&quot; &quot;ENSG00000117009&quot; &quot;ENSG00000284770&quot; &quot;ENSG00000285053&quot;
+##  [5] &quot;ENSG00000228058&quot; &quot;ENSG00000143774&quot; &quot;ENSG00000143801&quot; &quot;ENSG00000225334&quot;
+##  [9] &quot;ENSG00000143353&quot; &quot;ENSG00000117691&quot;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="index.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(universe)  </span></code></pre></div>
+<pre><code>## [1] 11231</code></pre>
+</div>
+<div id="kegg-entrez" class="section level3" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> KEGG (ENTREZ)</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="index.html#cb7-1" aria-hidden="true" tabindex="-1"></a>ENTREZ_universe <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/inclusion_fractions_ALL_updated.tsv&quot;</span>, </span>
+<span id="cb7-2"><a href="index.html#cb7-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">header =</span> T) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(gene_name) <span class="sc">%&gt;%</span> <span class="fu">unlist</span>() </span>
+<span id="cb7-3"><a href="index.html#cb7-3" aria-hidden="true" tabindex="-1"></a>ENTREZ_universe <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(ENTREZ_universe, <span class="st">&quot;,&quot;</span>)))</span>
+<span id="cb7-4"><a href="index.html#cb7-4" aria-hidden="true" tabindex="-1"></a>ENTREZ_universe <span class="ot">&lt;-</span> <span class="fu">bitr</span>(ENTREZ_universe, <span class="at">fromType =</span> <span class="st">&quot;SYMBOL&quot;</span>, </span>
+<span id="cb7-5"><a href="index.html#cb7-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">toType =</span> <span class="st">&quot;ENTREZID&quot;</span>, <span class="at">OrgDb=</span> organismDB) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-6"><a href="index.html#cb7-6" aria-hidden="true" tabindex="-1"></a>                        dplyr<span class="sc">::</span><span class="fu">select</span>(ENTREZID) <span class="sc">%&gt;%</span> <span class="fu">unlist</span>()</span></code></pre></div>
+<pre><code>## &#39;select()&#39; returned 1:many mapping between keys and columns</code></pre>
+<pre><code>## Warning in bitr(ENTREZ_universe, fromType = &quot;SYMBOL&quot;, toType = &quot;ENTREZID&quot;, :
+## 3.87% of input gene IDs are fail to map...</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="index.html#cb10-1" aria-hidden="true" tabindex="-1"></a>ENTREZ_universe <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(ENTREZ_universe, <span class="st">&quot;,&quot;</span>)))</span>
+<span id="cb10-2"><a href="index.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ENTREZ_universe)</span></code></pre></div>
+<pre><code>## [1] &quot;9156&quot;      &quot;8564&quot;      &quot;6905&quot;      &quot;101927532&quot; &quot;2987&quot;      &quot;5664&quot;</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="index.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(ENTREZ_universe)  </span></code></pre></div>
+<pre><code>## [1] 10798</code></pre>
+</div>
+</div>
+<div id="render-the-book" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Render the book</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="index.html#cb14-1" aria-hidden="true" tabindex="-1"></a>bookdown<span class="sc">::</span><span class="fu">render_book</span>(<span class="st">&quot;index.Rmd&quot;</span>, <span class="st">&quot;bookdown::gitbook&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="index.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)</span>
+<span id="cb15-2"><a href="index.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or the development version</span></span>
+<span id="cb15-3"><a href="index.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;rstudio/bookdown&quot;)</span></span></code></pre></div>
+</div>
+<div id="session-info" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Session info</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="index.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.1.2 (2021-11-01)
+## Platform: x86_64-apple-darwin17.0 (64-bit)
+## Running under: macOS Monterey 12.0.1
+## 
+## Matrix products: default
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats4    stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
+## 
+## other attached packages:
+##  [1] DT_0.20               org.Hs.eg.db_3.14.0   AnnotationDbi_1.56.2 
+##  [4] IRanges_2.28.0        S4Vectors_0.32.3      Biobase_2.54.0       
+##  [7] BiocGenerics_0.40.0   enrichplot_1.14.2     pathview_1.34.0      
+## [10] clusterProfiler_4.2.2 forcats_0.5.1         stringr_1.4.0        
+## [13] dplyr_1.0.7           purrr_0.3.4           readr_2.1.1          
+## [16] tidyr_1.1.4           tibble_3.1.6          ggplot2_3.3.5        
+## [19] tidyverse_1.3.1      
+## 
+## loaded via a namespace (and not attached):
+##   [1] readxl_1.3.1           shadowtext_0.1.1       backports_1.4.0       
+##   [4] fastmatch_1.1-3        plyr_1.8.6             igraph_1.3.0          
+##   [7] lazyeval_0.2.2         splines_4.1.2          crosstalk_1.2.0       
+##  [10] BiocParallel_1.28.2    GenomeInfoDb_1.30.0    digest_0.6.29         
+##  [13] yulab.utils_0.0.4      htmltools_0.5.2        GOSemSim_2.20.0       
+##  [16] viridis_0.6.2          GO.db_3.14.0           fansi_0.5.0           
+##  [19] magrittr_2.0.1         memoise_2.0.1          tzdb_0.2.0            
+##  [22] Biostrings_2.62.0      graphlayouts_0.8.0     modelr_0.1.8          
+##  [25] colorspace_2.0-2       blob_1.2.2             rvest_1.0.2           
+##  [28] ggrepel_0.9.1          haven_2.4.3            xfun_0.28             
+##  [31] crayon_1.4.2           RCurl_1.98-1.5         jsonlite_1.7.2        
+##  [34] graph_1.72.0           scatterpie_0.1.7       ape_5.5               
+##  [37] glue_1.5.1             polyclip_1.10-0        gtable_0.3.0          
+##  [40] zlibbioc_1.40.0        XVector_0.34.0         Rgraphviz_2.38.0      
+##  [43] scales_1.1.1           DOSE_3.20.1            DBI_1.1.1             
+##  [46] Rcpp_1.0.7             viridisLite_0.4.0      gridGraphics_0.5-1    
+##  [49] tidytree_0.3.9         bit_4.0.4              htmlwidgets_1.5.4     
+##  [52] httr_1.4.2             fgsea_1.20.0           RColorBrewer_1.1-2    
+##  [55] ellipsis_0.3.2         pkgconfig_2.0.3        XML_3.99-0.8          
+##  [58] farver_2.1.0           sass_0.4.0             dbplyr_2.1.1          
+##  [61] utf8_1.2.2             ggplotify_0.1.0        tidyselect_1.1.1      
+##  [64] labeling_0.4.2         rlang_0.4.12           reshape2_1.4.4        
+##  [67] munsell_0.5.0          cellranger_1.1.0       tools_4.1.2           
+##  [70] cachem_1.0.6           downloader_0.4         cli_3.1.0             
+##  [73] generics_0.1.1         RSQLite_2.2.9          broom_0.7.10          
+##  [76] evaluate_0.14          fastmap_1.1.0          yaml_2.2.1            
+##  [79] ggtree_3.2.1           knitr_1.36             bit64_4.0.5           
+##  [82] fs_1.5.1               tidygraph_1.2.1        KEGGREST_1.34.0       
+##  [85] ggraph_2.0.5           nlme_3.1-153           KEGGgraph_1.54.0      
+##  [88] aplot_0.1.2            DO.db_2.9              xml2_1.3.3            
+##  [91] compiler_4.1.2         rstudioapi_0.13        png_0.1-7             
+##  [94] reprex_2.0.1           treeio_1.18.1          tweenr_1.0.2          
+##  [97] bslib_0.3.1            stringi_1.7.6          highr_0.9             
+## [100] lattice_0.20-45        Matrix_1.3-4           vctrs_0.3.8           
+## [103] pillar_1.6.4           lifecycle_1.0.1        jquerylib_0.1.4       
+## [106] data.table_1.14.2      bitops_1.0-7           patchwork_1.1.1       
+## [109] qvalue_2.26.0          R6_2.5.1               bookdown_0.24         
+## [112] gridExtra_2.3          MASS_7.3-54            assertthat_0.2.1      
+## [115] withr_2.4.3            GenomeInfoDbData_1.2.7 parallel_4.1.2        
+## [118] hms_1.1.1              grid_4.1.2             ggfun_0.0.4           
+## [121] rmarkdown_2.11         ggforce_0.3.3          lubridate_1.8.0</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="go-and-kegg-common-targets-05.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
