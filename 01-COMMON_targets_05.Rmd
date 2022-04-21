@@ -158,5 +158,9 @@ KEGGresults <- enrichKEGG(
   universe = as.character(na.omit(ENTREZ_universe)),
   use_internal_data = FALSE
 )
-KEGGresults@result %>% filter(p.adjust < 0.1)
+```
+
+```{r}
+DT::datatable(KEGGresults@result %>% filter(p.adjust < 0.1), 
+              options = list(scrollX = TRUE))
 ```
