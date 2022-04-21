@@ -1,14 +1,14 @@
-# GO and KEGG: RBFOX1 targets 09
+# GO and KEGG: RBFOX1 targets 05
 
 ## Load the data
 
 ```{r}
-data_MAPP <- read.table("../data/inclusion_fractions_FG_RBFOX1_targets_05.tsv", 
+data_MAPP <- read.table("data/inclusion_fractions_FG_RBFOX1_targets_05.tsv", 
                         header = T)
 ```
 
 ```{r}
-head(data_MAPP)
+DT::datatable(data_MAPP, options = list(scrollX = TRUE))
 ```
 
 ## Gene ontology (GO)
@@ -44,10 +44,9 @@ assign(paste0("GO_", type_of_GO), enrichGO(
 df_GO <- eval(parse(text = paste0("GO_", type_of_GO)))
 ```
 
-
 ```{r}
 if(nrow(df_GO) > 0){
-  DT::datatable(df_GO@result %>% filter(p.adjust < 0.1), options = list(scrollX = TRUE))
+  DT::datatable(df_GO@result %>% filter(p.adjust < pvalueCutoff), options = list(scrollX = TRUE))
 } else "no GOs were found"
 ```
 
@@ -79,7 +78,7 @@ df_GO <- eval(parse(text = paste0("GO_", type_of_GO)))
 
 ```{r}
 if(nrow(df_GO) > 0){
-  DT::datatable(df_GO@result %>% filter(p.adjust < 0.1), options = list(scrollX = TRUE))
+  DT::datatable(df_GO@result %>% filter(p.adjust < pvalueCutoff), options = list(scrollX = TRUE))
 } else "no GOs were found"
 ```
 
@@ -111,7 +110,7 @@ df_GO <- eval(parse(text = paste0("GO_", type_of_GO)))
 
 ```{r}
 if(nrow(df_GO) > 0){
-  DT::datatable(df_GO@result %>% filter(p.adjust < 0.1), options = list(scrollX = TRUE))
+  DT::datatable(df_GO@result %>% filter(p.adjust < pvalueCutoff), options = list(scrollX = TRUE))
 } else "no GOs were found"
 ```
 
@@ -154,7 +153,7 @@ KEGGresults <- enrichKEGG(
   names(genes_DIFF),
   organism = "hsa",
   keyType = "ncbi-geneid",
-  pvalueCutoff = 0.1,
+  pvalueCutoff = pvalueCutoff,
   pAdjustMethod = "BH",
   universe = as.character(na.omit(ENTREZ_universe)),
   use_internal_data = FALSE
@@ -162,8 +161,8 @@ KEGGresults <- enrichKEGG(
 ```
 
 ```{r}
-if(nrow(KEGGresults@result %>% filter(p.adjust < 0.1)) > 0){
-  DT::datatable(KEGGresults@result %>% filter(p.adjust < 0.1), 
+if(nrow(KEGGresults@result %>% filter(p.adjust < pvalueCutoff)) > 0){
+  DT::datatable(KEGGresults@result %>% filter(p.adjust < pvalueCutoff), 
               options = list(scrollX = TRUE))
 } else "no KEGG pathways were found"
 ```
