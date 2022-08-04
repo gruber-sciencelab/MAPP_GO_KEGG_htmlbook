@@ -1,0 +1,168 @@
+# GO and KEGG: non targets 06
+
+## Load the data
+
+```{r}
+data_MAPP <- read.table("inclusion_tables/0.6/non_targets.tsv", 
+                        header = T)
+```
+
+```{r}
+DT::datatable(data_MAPP, options = list(scrollX = TRUE))
+```
+
+## Gene ontology (GO)
+
+### Prepare the gene list 
+
+```{r}
+genes <- data_MAPP %>% arrange(desc(ABSDIFF)) %>% dplyr::select(gene_id) %>%
+                      unlist() 
+genes <- unlist(strsplit(genes, ","))
+```
+
+```{r}
+head(genes)
+```
+
+### Biological process (BP)
+
+```{r}
+type_of_GO = "BP"
+
+assign(paste0("GO_", type_of_GO), enrichGO(
+  genes,
+  organismDB,
+  keyType = "ENSEMBL",
+  ont = type_of_GO,
+  pvalueCutoff = pvalueCutoff,
+  minGSSize = minGSSize,
+  pAdjustMethod = "BH",
+  universe = universe,
+  readable = TRUE))
+
+df_GO <- eval(parse(text = paste0("GO_", type_of_GO)))
+```
+
+```{r}
+if(nrow(df_GO) > 0){
+  DT::datatable(df_GO@result %>% filter(p.adjust < pvalueCutoff), options = list(scrollX = TRUE))
+} else "no GOs were found"
+```
+
+```{r}
+if(nrow(df_GO) > 0){
+  barplot(df_GO, showCategory = showCategory, 
+                                title = type_of_GO)
+} else "no GOs to plot"
+```
+
+### Molecular function (MF)
+
+```{r}
+type_of_GO = "MF"
+
+assign(paste0("GO_", type_of_GO), enrichGO(
+  genes,
+  organismDB,
+  keyType = "ENSEMBL",
+  ont = type_of_GO,
+  pvalueCutoff = pvalueCutoff,
+  minGSSize = minGSSize,
+  pAdjustMethod = "BH",
+  universe = universe,
+  readable = TRUE))
+
+df_GO <- eval(parse(text = paste0("GO_", type_of_GO)))
+```
+
+```{r}
+if(nrow(df_GO) > 0){
+  DT::datatable(df_GO@result %>% filter(p.adjust < pvalueCutoff), options = list(scrollX = TRUE))
+} else "no GOs were found"
+```
+
+```{r}
+if(nrow(df_GO) > 0){
+  barplot(df_GO, showCategory = showCategory, 
+                                title = type_of_GO)
+} else "no GOs to plot"
+```
+
+### Cellular component (CC)
+
+```{r}
+type_of_GO = "CC"
+
+assign(paste0("GO_", type_of_GO), enrichGO(
+  genes,
+  organismDB,
+  keyType = "ENSEMBL",
+  ont = type_of_GO,
+  pvalueCutoff = pvalueCutoff,
+  minGSSize = minGSSize,
+  pAdjustMethod = "BH",
+  universe = universe,
+  readable = TRUE))
+
+df_GO <- eval(parse(text = paste0("GO_", type_of_GO)))
+```
+
+```{r}
+if(nrow(df_GO) > 0){
+  DT::datatable(df_GO@result %>% filter(p.adjust < pvalueCutoff), options = list(scrollX = TRUE))
+} else "no GOs were found"
+```
+
+```{r}
+if(nrow(df_GO) > 0){
+  barplot(df_GO, showCategory = showCategory, 
+                                title = type_of_GO)
+} else "no GOs to plot"
+```
+
+## KEGG
+
+### Prepare the the data
+
+```{r}
+# select gene_id in ENSEMBL format and DIFF from the result table
+DIFF <- data_MAPP %>% dplyr::select(gene_id, DIFF)
+# rename the gene_id column 
+names(DIFF)[1] <- "ENSEMBL"
+head(DIFF)
+# create new df by converting ENSEMBL ID into ENTREZID and adding DIFF column
+# sort table by in descending order by abs(DIFF)
+genes_ENTREZ_df <- bitr(data_MAPP$gene_id, fromType = "ENSEMBL", 
+                        toType = "ENTREZID", OrgDb= organismDB) %>% 
+                        left_join(DIFF, by = "ENSEMBL") %>%
+                        arrange(desc(abs(DIFF)))
+head(genes_ENTREZ_df )
+# create a vector with DIFF values
+genes_DIFF <- genes_ENTREZ_df$DIFF
+genes_DIFF
+# add names based on ENTREZID
+names(genes_DIFF) <- genes_ENTREZ_df$ENTREZID
+genes_DIFF
+```
+
+### run KEGG
+
+```{r}
+KEGGresults <- enrichKEGG(
+  names(genes_DIFF),
+  organism = "hsa",
+  keyType = "ncbi-geneid",
+  pvalueCutoff = pvalueCutoff,
+  pAdjustMethod = "BH",
+  universe = as.character(na.omit(ENTREZ_universe)),
+  use_internal_data = FALSE
+)
+```
+
+```{r}
+if(nrow(KEGGresults@result %>% filter(p.adjust < pvalueCutoff)) > 0){
+  DT::datatable(KEGGresults@result %>% filter(p.adjust < pvalueCutoff), 
+              options = list(scrollX = TRUE))
+} else "no KEGG pathways were found"
+```

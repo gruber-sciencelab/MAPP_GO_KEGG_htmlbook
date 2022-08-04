@@ -3,7 +3,7 @@
 ## Load the data
 
 ```{r}
-data_MAPP <- read.table("data/inclusion_fractions_FG_PTBP1_targets_09.tsv", 
+data_MAPP <- read.table("inclusion_tables/0.9/ptbp1_exclusive_targets.tsv", 
                         header = T)
 ```
 
