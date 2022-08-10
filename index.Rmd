@@ -41,7 +41,7 @@ showCategory = 10 # number of GOs to plot
 ### GO (ENSEMBL)
 
 ```{r}
-universe <- read.table("data/inclusion_fractions_ALL_updated.tsv", 
+universe <- read.table("inclusion_tables/cassette_exons_universe_table.tsv", 
                        header = T) %>% dplyr::select(gene_id) %>% unlist() 
 universe <- unique(unlist(strsplit(universe, ",")))
 head(universe, 10)
@@ -51,10 +51,10 @@ length(universe)
 ### KEGG (ENTREZ)
 
 ```{r}
-ENTREZ_universe <- read.table("data/inclusion_fractions_ALL_updated.tsv", 
-                       header = T) %>% dplyr::select(gene_name) %>% unlist() 
+ENTREZ_universe <- read.table("inclusion_tables/cassette_exons_universe_table.tsv", 
+                       header = T) %>% dplyr::select(gene_id) %>% unlist() 
 ENTREZ_universe <- unique(unlist(strsplit(ENTREZ_universe, ",")))
-ENTREZ_universe <- bitr(ENTREZ_universe, fromType = "SYMBOL", 
+ENTREZ_universe <- bitr(ENTREZ_universe, fromType = "ENSEMBL", 
                         toType = "ENTREZID", OrgDb= organismDB) %>% 
                         dplyr::select(ENTREZID) %>% unlist()
 ENTREZ_universe <- unique(unlist(strsplit(ENTREZ_universe, ",")))
