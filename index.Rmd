@@ -34,6 +34,8 @@ minGSSize <- 10 # minimal size of genes annotated by Ontology term for testing
 organismDB <- "org.Hs.eg.db" # human DB
 pvalueCutoff = 0.1 # p-value cutoff
 showCategory = 10 # number of GOs to plot
+genes_padj_cutoff = 0.1 # padjusted cut of for genes that are different 
+# between control and cancer conditions
 ```
 
 ## Universe set of genes

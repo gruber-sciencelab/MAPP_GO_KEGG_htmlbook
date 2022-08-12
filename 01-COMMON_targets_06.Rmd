@@ -5,6 +5,22 @@
 ```{r}
 data_MAPP <- read.table("inclusion_tables/0.6/common_targets.tsv", 
                         header = T)
+# select control and cancer columns
+library(tidyverse)
+CTRL <- data_MAPP %>% dplyr::select_if(., grepl("^CONTROL_", names(.))) 
+CANCER <- data_MAPP %>% dplyr::select_if(., grepl("^CANCER_", names(.))) 
+
+# use row_t_welch instead of usual t.test function since t.test produces 
+# errors in some cases: t.test error: data are essentially constant
+# NAs are assigned for problematic cases 
+# https://stats.stackexchange.com/questions/499634/t-test-error-data-are-essentially-constant/499637
+library(matrixTests)
+data_MAPP <- data_MAPP %>%
+  mutate(padj = p.adjust(row_t_welch(CTRL, CANCER)$pvalue,
+                         method = "BH", n=nrow(data_MAPP)))
+# data_MAPP <- data_MAPP %>%
+#   mutate(pval=row_t_welch(CTRL, CANCER)$pvalue)
+sum(is.na(data_MAPP$padj))
 ```
 
 ```{r}
@@ -16,8 +32,10 @@ DT::datatable(data_MAPP, options = list(scrollX = TRUE))
 ### Prepare the gene list 
 
 ```{r}
-genes <- data_MAPP %>% arrange(desc(ABSDIFF)) %>% dplyr::select(gene_id) %>%
-                      unlist() 
+# select genes from data_MAPP table based on padj values
+# threshold is set in index.Rmd: genes_padj_cutoff
+genes <- na.omit(data_MAPP) %>% arrange(desc(ABSDIFF)) %>% 
+  filter(padj < genes_padj_cutoff) %>% dplyr::select(gene_id) %>% unlist() 
 genes <- unlist(strsplit(genes, ","))
 ```
 
@@ -133,7 +151,7 @@ names(DIFF)[1] <- "ENSEMBL"
 head(DIFF)
 # create new df by converting ENSEMBL ID into ENTREZID and adding DIFF column
 # sort table by in descending order by abs(DIFF)
-genes_ENTREZ_df <- bitr(data_MAPP$gene_id, fromType = "ENSEMBL", 
+genes_ENTREZ_df <- bitr(na.omit(data_MAPP$gene_id[data_MAPP$padj < genes_padj_cutoff]), fromType = "ENSEMBL", 
                         toType = "ENTREZID", OrgDb= organismDB) %>% 
                         left_join(DIFF, by = "ENSEMBL") %>%
                         arrange(desc(abs(DIFF)))
