@@ -43,7 +43,7 @@ genes_padj_cutoff = 0.1 # padjusted cut of for genes that are different
 ### GO (ENSEMBL)
 
 ```{r}
-universe <- read.table("inclusion_tables/cassette_exons_universe_table.tsv", 
+universe <- read.table("data/cassette_exons_universe_table.tsv", 
                        header = T) %>% dplyr::select(gene_id) %>% unlist() 
 universe <- unique(unlist(strsplit(universe, ",")))
 head(universe, 10)
@@ -53,7 +53,7 @@ length(universe)
 ### KEGG (ENTREZ)
 
 ```{r}
-ENTREZ_universe <- read.table("inclusion_tables/cassette_exons_universe_table.tsv", 
+ENTREZ_universe <- read.table("data/cassette_exons_universe_table.tsv", 
                        header = T) %>% dplyr::select(gene_id) %>% unlist() 
 ENTREZ_universe <- unique(unlist(strsplit(ENTREZ_universe, ",")))
 ENTREZ_universe <- bitr(ENTREZ_universe, fromType = "ENSEMBL", 

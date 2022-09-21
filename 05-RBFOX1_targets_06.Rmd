@@ -3,7 +3,7 @@
 ## Load the data
 
 ```{r}
-data_MAPP <- read.table("inclusion_tables/0.6/rbfox1_exclusive_targets.tsv", 
+data_MAPP <- read.table("data/inclusion_tables/0.6/rbfox1_exclusive_targets.tsv", 
                         header = T)
 # select control and cancer columns
 library(tidyverse)
