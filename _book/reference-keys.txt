@@ -15,7 +15,7 @@ molecular-function-mf
 cellular-component-cc
 kegg
 prepare-the-the-data
-run-kegg
+run-enrichkegg
 go-and-kegg-common-targets-09
 load-the-data-1
 gene-ontology-go-1
@@ -25,7 +25,7 @@ molecular-function-mf-1
 cellular-component-cc-1
 kegg-1
 prepare-the-the-data-1
-run-kegg-1
+run-enrichkegg-1
 go-and-kegg-ptbp1-targets-06
 load-the-data-2
 gene-ontology-go-2
@@ -35,7 +35,7 @@ molecular-function-mf-2
 cellular-component-cc-2
 kegg-2
 prepare-the-the-data-2
-run-kegg-2
+run-enrichkegg-2
 go-and-kegg-ptbp1-targets-09
 load-the-data-3
 gene-ontology-go-3
@@ -45,7 +45,7 @@ molecular-function-mf-3
 cellular-component-cc-3
 kegg-3
 prepare-the-the-data-3
-run-kegg-3
+run-enrichkegg-3
 go-and-kegg-rbfox1-targets-06
 load-the-data-4
 gene-ontology-go-4
@@ -55,7 +55,7 @@ molecular-function-mf-4
 cellular-component-cc-4
 kegg-4
 prepare-the-the-data-4
-run-kegg-4
+run-enrichkegg-4
 go-and-kegg-rbfox1-targets-09
 load-the-data-5
 gene-ontology-go-5
@@ -65,7 +65,7 @@ molecular-function-mf-5
 cellular-component-cc-5
 kegg-5
 prepare-the-the-data-5
-run-kegg-5
+run-enrichkegg-5
 go-and-kegg-non-targets-06
 load-the-data-6
 gene-ontology-go-6
@@ -75,7 +75,7 @@ molecular-function-mf-6
 cellular-component-cc-6
 kegg-6
 prepare-the-the-data-6
-run-kegg-6
+run-enrichkegg-6
 go-and-kegg-non-targets-09
 load-the-data-7
 gene-ontology-go-7
@@ -85,4 +85,4 @@ molecular-function-mf-7
 cellular-component-cc-7
 kegg-7
 prepare-the-the-data-7
-run-kegg-7
+run-enrichkegg-7

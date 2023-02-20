@@ -24,56 +24,76 @@ library(enrichplot)
 library(org.Hs.eg.db)
 library(readr)
 library(DT)
+library(matrixTests)
 ```
 
 ## Options 
 
 ```{r}
-# GO analysis
-minGSSize <- 10 # minimal size of genes annotated by Ontology term for testing
-organismDB <- "org.Hs.eg.db" # human DB
-pvalueCutoff = 0.1 # p-value cutoff
-showCategory = 10 # number of GOs to plot
-genes_padj_cutoff = 0.1 # padjusted cut of for genes that are different 
-# between control and cancer conditions
+# These options are used for GO analysis in the downstream scripts /
+# R markdown pages:
+
+# minimal size of genes annotated by ontology term for testing
+minGSSize <- 10 
+
+# human DB
+organismDB <- "org.Hs.eg.db"
+
+# p-value cutoff
+pvalueCutoff <- 0.1
+
+# number of GOs to plot
+showCategory <- 10 
+
+# p-adjusted cut off for cassette exons that are different between 
+# control and cancer conditions
+genes_padj_cutoff <- 0.1
 ```
 
 ## Universe set of genes
 
+**all genes having quantified cassette exons**
+
 ### GO (ENSEMBL)
 
 ```{r}
+# read table with cassette exons and select the genes
 universe <- read.table("data/cassette_exons_universe_table.tsv", 
-                       header = T) %>% dplyr::select(gene_id) %>% unlist() 
+                       header = T) %>% dplyr::select(gene_id) %>% unlist()
+
+# select unique IDs
 universe <- unique(unlist(strsplit(universe, ",")))
+
+# preview first 10 entrees
 head(universe, 10)
+
+# length of a vector with ENSEMBL IDs
 length(universe)  
 ```
 
 ### KEGG (ENTREZ)
 
-```{r}
-ENTREZ_universe <- read.table("data/cassette_exons_universe_table.tsv", 
-                       header = T) %>% dplyr::select(gene_id) %>% unlist() 
-ENTREZ_universe <- unique(unlist(strsplit(ENTREZ_universe, ",")))
-ENTREZ_universe <- bitr(ENTREZ_universe, fromType = "ENSEMBL", 
+```{r, warning = FALSE}
+# convert ENSEMBL IDs into ENTREZ format (required for KEGG analysis)
+ENTREZ_universe <- bitr(universe, fromType = "ENSEMBL", 
                         toType = "ENTREZID", OrgDb= organismDB) %>% 
                         dplyr::select(ENTREZID) %>% unlist()
+
+# select unique IDs
 ENTREZ_universe <- unique(unlist(strsplit(ENTREZ_universe, ",")))
+
+# preview first 10 entrees
 head(ENTREZ_universe)
+
+# length of a vector with ENSEMBL IDs
 length(ENTREZ_universe)  
 ```
 
 ## Render the book 
 
 ```{r, eval = F}
+# the full book is rendered with this command
 bookdown::render_book("index.Rmd", "bookdown::gitbook")
-```
-
-```{r eval=FALSE}
-install.packages("bookdown")
-# or the development version
-# devtools::install_github("rstudio/bookdown")
 ```
 
 ```{r include=FALSE}

@@ -3,10 +3,11 @@
 ## Load the data
 
 ```{r}
+# load table with common targets (binding probability > 0.6)
 data_MAPP <- read.table("data/inclusion_tables/0.6/common_targets.tsv", 
                         header = T)
+
 # select control and cancer columns
-library(tidyverse)
 CTRL <- data_MAPP %>% dplyr::select_if(., grepl("^CONTROL_", names(.))) 
 CANCER <- data_MAPP %>% dplyr::select_if(., grepl("^CANCER_", names(.))) 
 
@@ -14,16 +15,14 @@ CANCER <- data_MAPP %>% dplyr::select_if(., grepl("^CANCER_", names(.)))
 # errors in some cases: t.test error: data are essentially constant
 # NAs are assigned for problematic cases 
 # https://stats.stackexchange.com/questions/499634/t-test-error-data-are-essentially-constant/499637
-library(matrixTests)
+# library matrixTests
 data_MAPP <- data_MAPP %>%
   mutate(padj = p.adjust(row_t_welch(CTRL, CANCER)$pvalue,
                          method = "BH", n=nrow(data_MAPP)))
-# data_MAPP <- data_MAPP %>%
-#   mutate(pval=row_t_welch(CTRL, CANCER)$pvalue)
-sum(is.na(data_MAPP$padj))
 ```
 
 ```{r}
+# view table interactively
 DT::datatable(data_MAPP, options = list(scrollX = TRUE))
 ```
 
@@ -40,14 +39,17 @@ genes <- unlist(strsplit(genes, ","))
 ```
 
 ```{r}
+# preview the gene names
 head(genes)
 ```
 
 ### Biological process (BP)
 
 ```{r}
+# select type of GO analysis
 type_of_GO = "BP"
 
+# create an object with a name based on the type of analysis
 assign(paste0("GO_", type_of_GO), enrichGO(
   genes,
   organismDB,
@@ -59,16 +61,24 @@ assign(paste0("GO_", type_of_GO), enrichGO(
   universe = universe,
   readable = TRUE))
 
+# assign the object created above to "df_GO" object
 df_GO <- eval(parse(text = paste0("GO_", type_of_GO)))
 ```
 
 ```{r}
+# if there are enriched terms in "df_GO" object, create a table with the results
+# filtered by specified p-adjusted threshold, if no enriched terms were found
+# print "no GOs were found"
 if(nrow(df_GO) > 0){
-  DT::datatable(df_GO@result %>% filter(p.adjust < pvalueCutoff), options = list(scrollX = TRUE))
+  DT::datatable(df_GO@result %>% filter(p.adjust < pvalueCutoff), 
+                options = list(scrollX = TRUE))
 } else "no GOs were found"
 ```
 
 ```{r}
+# if there are enriched terms in "df_GO" object, create a barplot with 
+# specified number of GOs to plot, if no enriched terms were found
+# print "no GOs to plot"
 if(nrow(df_GO) > 0){
   barplot(df_GO, showCategory = showCategory, 
                                 title = type_of_GO)
@@ -78,8 +88,10 @@ if(nrow(df_GO) > 0){
 ### Molecular function (MF)
 
 ```{r}
+# select type of GO analysis
 type_of_GO = "MF"
 
+# create an object with a name based on the type of analysis
 assign(paste0("GO_", type_of_GO), enrichGO(
   genes,
   organismDB,
@@ -91,16 +103,24 @@ assign(paste0("GO_", type_of_GO), enrichGO(
   universe = universe,
   readable = TRUE))
 
+# assign the object created above to "df_GO" object
 df_GO <- eval(parse(text = paste0("GO_", type_of_GO)))
 ```
 
 ```{r}
+# if there are enriched terms in "df_GO" object, create a table with the results
+# filtered by specified p-adjusted threshold, if no enriched terms were found
+# print "no GOs were found"
 if(nrow(df_GO) > 0){
-  DT::datatable(df_GO@result %>% filter(p.adjust < pvalueCutoff), options = list(scrollX = TRUE))
+  DT::datatable(df_GO@result %>% filter(p.adjust < pvalueCutoff), 
+                options = list(scrollX = TRUE))
 } else "no GOs were found"
 ```
 
 ```{r}
+# if there are enriched terms in "df_GO" object, create a barplot with 
+# specified number of GOs to plot, if no enriched terms were found
+# print "no GOs to plot"
 if(nrow(df_GO) > 0){
   barplot(df_GO, showCategory = showCategory, 
                                 title = type_of_GO)
@@ -110,8 +130,10 @@ if(nrow(df_GO) > 0){
 ### Cellular component (CC)
 
 ```{r}
+# select type of GO analysis
 type_of_GO = "CC"
 
+# create an object with a name based on the type of analysis
 assign(paste0("GO_", type_of_GO), enrichGO(
   genes,
   organismDB,
@@ -123,16 +145,24 @@ assign(paste0("GO_", type_of_GO), enrichGO(
   universe = universe,
   readable = TRUE))
 
+# assign the object created above to "df_GO" object
 df_GO <- eval(parse(text = paste0("GO_", type_of_GO)))
 ```
 
 ```{r}
+# if there are enriched terms in "df_GO" object, create a table with the results
+# filtered by specified p-adjusted threshold, if no enriched terms were found
+# print "no GOs were found"
 if(nrow(df_GO) > 0){
-  DT::datatable(df_GO@result %>% filter(p.adjust < pvalueCutoff), options = list(scrollX = TRUE))
+  DT::datatable(df_GO@result %>% filter(p.adjust < pvalueCutoff), 
+                options = list(scrollX = TRUE))
 } else "no GOs were found"
 ```
 
 ```{r}
+# if there are enriched terms in "df_GO" object, create a barplot with 
+# specified number of GOs to plot, if no enriched terms were found
+# print "no GOs to plot"
 if(nrow(df_GO) > 0){
   barplot(df_GO, showCategory = showCategory, 
                                 title = type_of_GO)
@@ -143,30 +173,41 @@ if(nrow(df_GO) > 0){
 
 ### Prepare the the data
 
-```{r}
+```{r, warning = FALSE}
 # select gene_id in ENSEMBL format and DIFF from the result table
 DIFF <- data_MAPP %>% dplyr::select(gene_id, DIFF)
-# rename the gene_id column 
+
+# rename the gene_id column  
 names(DIFF)[1] <- "ENSEMBL"
+
+# preview the head of the table
 head(DIFF)
+
 # create new df by converting ENSEMBL ID into ENTREZID and adding DIFF column
-# sort table by in descending order by abs(DIFF)
-genes_ENTREZ_df <- bitr(na.omit(data_MAPP$gene_id[data_MAPP$padj < genes_padj_cutoff]), fromType = "ENSEMBL", 
-                        toType = "ENTREZID", OrgDb= organismDB) %>% 
-                        left_join(DIFF, by = "ENSEMBL") %>%
-                        arrange(desc(abs(DIFF)))
+# arrange table in descending order by abs(DIFF)
+genes_ENTREZ_df <- 
+  bitr(na.omit(data_MAPP$gene_id[data_MAPP$padj < genes_padj_cutoff]), 
+       fromType = "ENSEMBL", toType = "ENTREZID", OrgDb= organismDB) %>% 
+  left_join(DIFF, by = "ENSEMBL") %>% arrange(desc(abs(DIFF)))
+
+# preview obtained table
 head(genes_ENTREZ_df )
+
 # create a vector with DIFF values
 genes_DIFF <- genes_ENTREZ_df$DIFF
 genes_DIFF
+
 # add names based on ENTREZID
 names(genes_DIFF) <- genes_ENTREZ_df$ENTREZID
-genes_DIFF
+
+# preview genes in ENTREZ format with corresponding fold changes
+head(genes_DIFF)
 ```
 
-### run KEGG
+### run enrichKEGG
 
 ```{r}
+# run enrichKEGG using options specified in "index.Rmd" file
 KEGGresults <- enrichKEGG(
   names(genes_DIFF),
   organism = "hsa",
@@ -179,6 +220,9 @@ KEGGresults <- enrichKEGG(
 ```
 
 ```{r}
+# if there are enriched KEGG pathways found in "KEGGresults" object, 
+# create a table with the results filtered by specified p-adjusted threshold, 
+# if no enriched terms were found, print "no KEGG pathways were found"
 if(nrow(KEGGresults@result %>% filter(p.adjust < pvalueCutoff)) > 0){
   DT::datatable(KEGGresults@result %>% filter(p.adjust < pvalueCutoff), 
               options = list(scrollX = TRUE))
