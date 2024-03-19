@@ -223,8 +223,9 @@ KEGGresults <- enrichKEGG(
 # if there are enriched KEGG pathways found in "KEGGresults" object, 
 # create a table with the results filtered by specified p-adjusted threshold, 
 # if no enriched terms were found, print "no KEGG pathways were found"
+if (!is.null(KEGGresults)) {
 if(nrow(KEGGresults@result %>% filter(p.adjust < pvalueCutoff)) > 0){
   DT::datatable(KEGGresults@result %>% filter(p.adjust < pvalueCutoff), 
-              options = list(scrollX = TRUE))
+              options = list(scrollX = TRUE))}
 } else "no KEGG pathways were found"
 ```
